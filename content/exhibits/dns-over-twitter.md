@@ -1,0 +1,14 @@
+---
+title: DNS over Twitter
+summary: A short-lived resolver interface built around a social-media account.
+category: DNS over something else
+tags: Twitter, resolver, messaging
+image: /static/images/talk/slide-16.webp
+source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+status: published
+updated: 2026-08-20T00:00:00Z
+---
+
+This service accepted a request through a social platform and replied with a DNS answer. It is an example of the protocol escaping its conventional client and server shape.
+
+The endpoint is historical. The exhibit preserves the pattern rather than endorsing a service dependency.
