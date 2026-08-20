@@ -32,6 +32,8 @@ h1, h2, h3 { margin: 0; font-family: var(--font); letter-spacing: -0.035em; line
 .section-heading { max-width: 680px; margin-bottom: 2rem; }
 .section-heading h1, .section-heading h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 650; }
 .section-heading > p:not(.eyebrow):not(.categories) { margin: 0.7rem 0 0; color: var(--muted); }
+.collection-section + .collection-section { margin-top: 3.25rem; }
+.collection-section h2 { margin-bottom: 1rem; font-size: 1.35rem; font-weight: 650; }
 .categories, .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0; }
 .categories span, .tags span { padding: 0.18rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 0.78rem; }
 .exhibit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1rem; }
