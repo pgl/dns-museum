@@ -36,20 +36,23 @@ h1, h2, h3 { margin: 0; font-family: var(--font); letter-spacing: -0.035em; line
 .categories span, .tags span { padding: 0.18rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 0.78rem; }
 .exhibit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1rem; }
 .exhibit-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 0.75rem; background: var(--surface); }
-.exhibit-card img { width: 100%; max-height: 220px; object-fit: contain; background: #fafafa; border-bottom: 1px solid var(--line); }
-.exhibit-card > div { display: flex; flex-direction: column; padding: 1rem; }
-.exhibit-card h3 { font-size: 1.06rem; font-weight: 650; }
-.exhibit-card h3 a { text-decoration: none; }
-.exhibit-card > div > p:not(.eyebrow) { margin: 0.5rem 0 0.9rem; color: var(--muted); font-size: 0.9rem; }
+.card-heading { padding: 1rem 1rem 0.75rem; }
+.card-heading h3 { font-size: 1.06rem; font-weight: 650; }
+.card-heading h3 a { text-decoration: none; }
+.card-heading .eyebrow { margin: 0.3rem 0 0; }
+.screenshot-frame { padding: 0.75rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fafafa; }
+.screenshot-frame img { width: 100%; max-height: 220px; margin-inline: auto; border: 1px solid var(--line); object-fit: contain; }
+.card-body { display: flex; flex-direction: column; padding: 1rem; }
+.card-body p { margin: 0 0 0.9rem; color: var(--muted); font-size: 0.9rem; }
 .text-link, .card-link, .back-link { color: var(--accent-dark); font-size: 0.9rem; font-weight: 600; }
 .card-link { margin-top: auto; }
 .exhibit { width: min(760px, 100%); margin: 0 auto; padding: 2.5rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 1.75rem; }
 .exhibit header h1 { font-size: clamp(2.1rem, 5vw, 3.5rem); font-weight: 650; }
 .lede { margin: 0.85rem 0 0; color: var(--muted); font-size: 1.1rem; }
-.exhibit figure { margin: 2rem 0; overflow: hidden; border: 1px solid var(--line); border-radius: 0.75rem; background: var(--surface); }
-.exhibit figure img { width: 100%; max-height: 680px; margin-inline: auto; object-fit: contain; }
-figcaption { padding: 0.5rem 0.75rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.78rem; }
+.exhibit figure { margin: 2rem 0; padding: 0.75rem; overflow: hidden; border: 1px solid var(--line); border-radius: 0.75rem; background: var(--surface); }
+.exhibit figure img { width: 100%; max-height: 680px; margin-inline: auto; border: 1px solid var(--line); object-fit: contain; }
+figcaption { margin: 0.75rem -0.75rem -0.75rem; padding: 0.5rem 0.75rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.78rem; }
 .prose { font-size: 1rem; }
 .prose h2 { margin: 2rem 0 0.5rem; font-size: 1.35rem; font-weight: 650; }
 .prose h3 { margin: 1.5rem 0 0.4rem; font-size: 1.1rem; font-weight: 650; }
