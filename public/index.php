@@ -30,13 +30,23 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' https:; styl
 
 function layout(string $title, string $content): void {
     echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A field guide to unusual uses of the Domain Name System."><title>' . h($title) . '</title><link rel="stylesheet" href="/static/css/site.css"></head><body>';
-    echo '<a class="skip-link" href="#content">Skip to content</a><header class="site-header"><a class="wordmark" href="/">Museum <span>of</span> DNS</a><nav aria-label="Main navigation"><a href="/#collection">Collection</a><a href="/admin">Curator desk</a></nav></header><main id="content">' . $content . '</main>';
+    echo '<a class="skip-link" href="#content">Skip to content</a><header class="site-header"><a class="wordmark" href="/">Museum <span>of</span> DNS</a><nav aria-label="Main navigation"><a href="/#collection">Collection</a><a href="/categories/">Categories</a><a href="/admin">Curator desk</a></nav></header><main id="content">' . $content . '</main>';
     echo '<footer><p>A field guide to unusual uses of DNS.</p></footer><script src="/static/js/admin.js" defer></script></body></html>';
 }
 
 function redirect(string $to): never { header('Location: ' . $to, true, 303); exit; }
 function require_admin(): void { if (empty($_SESSION['museum_admin'])) { redirect('/admin/login'); } }
 function form_value(array $entry, string $key): string { return h((string) ($entry[$key] ?? '')); }
+function collection_sections(array $entries): array {
+    $labels = ['Traceroutes' => 'Traceroutes', 'DNS over something else' => 'DNS over…', 'Tools and toys' => 'Tools and toys', 'Tunnelling' => 'Tunnelling', 'Other things' => 'Other things'];
+    $sections = array_fill_keys(array_keys($labels), []);
+    foreach ($entries as $entry) {
+        if (!array_key_exists($entry['category'], $sections)) { $labels[$entry['category']] = $entry['category']; $sections[$entry['category']] = []; }
+        $sections[$entry['category']][] = $entry;
+    }
+    return [$labels, $sections];
+}
+function section_anchor(string $category): string { return strtolower(str_replace(' ', '-', str_replace(' something else', '', $category))); }
 
 function editor(array $entry, string $error = '', string $preview = ''): void {
     $isExisting = $entry['slug'] !== '';
@@ -60,18 +70,17 @@ function editor(array $entry, string $error = '', string $preview = ''): void {
 try {
     if ($path === '/' && $method === 'GET') {
         $entries = $store->all();
-        $sectionLabels = [
-            'Traceroutes' => 'Traceroutes',
-            'DNS over something else' => 'DNS over…',
-            'Tools and toys' => 'Tools and toys',
-            'Tunnelling' => 'Tunnelling',
-            'Other things' => 'Other things',
-        ];
-        $sections = array_fill_keys(array_keys($sectionLabels), []);
-        foreach ($entries as $entry) { $sections[$entry['category']][] = $entry; }
+        [$sectionLabels, $sections] = collection_sections($entries);
         ob_start(); ?>
-        <section class="collection" id="collection"><div class="section-heading"><p class="eyebrow">Museum of DNS · <?= count($entries) ?> entries</p><h1>The collection</h1><p>A reference for the odd, inventive, and occasionally impractical things people have done with DNS.</p></div><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><section class="collection-section" id="<?= h(strtolower(str_replace(' ', '-', str_replace(' something else', '', $category)))) ?>"><h2><?= h($sectionLabels[$category]) ?></h2><div class="exhibit-grid"><?php foreach ($sectionEntries as $entry): ?><article class="exhibit-card"><div class="card-heading"><h3><a href="/exhibits/<?= rawurlencode($entry['slug']) ?>"><?= h($entry['title']) ?></a></h3><p class="eyebrow"><?= h($entry['category']) ?></p></div><?php if ($entry['image'] !== ''): ?><div class="screenshot-frame"><img src="<?= h($entry['image']) ?>" alt="Screenshot used in the talk for <?= h($entry['title']) ?>" loading="lazy" width="1280" height="720"></div><?php endif; ?><div class="card-body"><p><?= h($entry['summary']) ?></p><a class="card-link" href="/exhibits/<?= rawurlencode($entry['slug']) ?>">Read more <span aria-hidden="true">→</span></a></div></article><?php endforeach; ?></div></section><?php endforeach; ?></section>
+        <section class="collection" id="collection"><div class="section-heading"><p class="eyebrow">Museum of DNS · <?= count($entries) ?> entries</p><h1>The collection</h1><p>A reference for the odd, inventive, and occasionally impractical things people have done with DNS.</p></div><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><section class="collection-section" id="<?= h(section_anchor($category)) ?>"><h2><?= h($sectionLabels[$category]) ?></h2><div class="exhibit-grid"><?php foreach ($sectionEntries as $entry): ?><article class="exhibit-card"><div class="card-heading"><h3><a href="/exhibits/<?= rawurlencode($entry['slug']) ?>"><?= h($entry['title']) ?></a></h3><p class="eyebrow"><?= h($entry['category']) ?></p></div><?php if ($entry['image'] !== ''): ?><div class="screenshot-frame"><img src="<?= h($entry['image']) ?>" alt="Screenshot used in the talk for <?= h($entry['title']) ?>" loading="lazy" width="1280" height="720"></div><?php endif; ?><div class="card-body"><p><?= h($entry['summary']) ?></p><a class="card-link" href="/exhibits/<?= rawurlencode($entry['slug']) ?>">Read more <span aria-hidden="true">→</span></a></div></article><?php endforeach; ?></div></section><?php endforeach; ?></section>
         <?php layout('Museum of DNS', (string) ob_get_clean()); exit;
+    }
+    if (($path === '/categories' || $path === '/categories/') && $method === 'GET') {
+        $entries = $store->all();
+        [$sectionLabels, $sections] = collection_sections($entries);
+        ob_start(); ?>
+        <section class="categories-page"><div class="section-heading"><p class="eyebrow">Museum of DNS · <?= count($entries) ?> entries</p><h1>Categories</h1><p>Every entry, grouped by the way DNS is being used.</p></div><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><section class="category-list-section" id="<?= h(section_anchor($category)) ?>"><h2><?= h($sectionLabels[$category]) ?></h2><ul class="entry-list"><?php foreach ($sectionEntries as $entry): ?><li><a href="/exhibits/<?= rawurlencode($entry['slug']) ?>"><?= h($entry['title']) ?></a><span><?= h($entry['summary']) ?></span></li><?php endforeach; ?></ul></section><?php endforeach; ?></section>
+        <?php layout('Categories · Museum of DNS', (string) ob_get_clean()); exit;
     }
     if (preg_match('#\A/exhibits/([a-z0-9-]+)\z#', $path, $matches) && $method === 'GET') {
         $entry = $store->get($matches[1]); if ($entry['status'] !== 'published') { http_response_code(404); exit('Not found'); }

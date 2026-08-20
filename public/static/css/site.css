@@ -34,6 +34,13 @@ h1, h2, h3 { margin: 0; font-family: var(--font); letter-spacing: -0.035em; line
 .section-heading > p:not(.eyebrow):not(.categories) { margin: 0.7rem 0 0; color: var(--muted); }
 .collection-section + .collection-section { margin-top: 3.25rem; }
 .collection-section h2 { margin-bottom: 1rem; font-size: 1.35rem; font-weight: 650; }
+.categories-page { width: min(860px, 100%); margin: 0 auto; padding: 2.5rem 0 5rem; }
+.category-list-section + .category-list-section { margin-top: 2.5rem; }
+.category-list-section h2 { margin-bottom: 0.65rem; font-size: 1.25rem; font-weight: 650; }
+.entry-list { margin: 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+.entry-list li { display: grid; grid-template-columns: minmax(13rem, 0.85fr) minmax(0, 1.4fr); gap: 1.5rem; padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
+.entry-list a { font-weight: 600; text-decoration: none; }
+.entry-list span { color: var(--muted); font-size: 0.92rem; }
 .categories, .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0; }
 .categories span, .tags span { padding: 0.18rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 0.78rem; }
 .exhibit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1rem; }
@@ -101,4 +108,4 @@ td small { display: block; }
 .preview h2 { font-size: 1.6rem; }
 .preview img { margin: 1rem 0; }
 @media (max-width: 800px) { .site-header, main, footer { width: min(100% - 2rem, 1120px); } .exhibit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .exhibit-grid, .field-row { grid-template-columns: 1fr; } .site-header { min-height: 3.75rem; } .admin-heading { display: block; } .admin-heading > div:last-child { margin-top: 1rem; } table { font-size: 0.85rem; } th:nth-child(2), td:nth-child(2), th:nth-child(4), td:nth-child(4) { display: none; } }
+@media (max-width: 560px) { .exhibit-grid, .field-row { grid-template-columns: 1fr; } .site-header { min-height: 3.75rem; } .admin-heading { display: block; } .admin-heading > div:last-child { margin-top: 1rem; } .entry-list li { grid-template-columns: 1fr; gap: 0.25rem; } table { font-size: 0.85rem; } th:nth-child(2), td:nth-child(2), th:nth-child(4), td:nth-child(4) { display: none; } }
