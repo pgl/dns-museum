@@ -4,7 +4,7 @@ summary: A tunnel design that places VPN traffic inside DNS transport.
 category: Tunnelling
 tags: VPN, tunnel, transport
 image: /static/images/talk/slide-46.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://play.google.com/store/apps/details?id=com.in.troiddns
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

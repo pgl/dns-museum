@@ -4,7 +4,7 @@ summary: A DNS tunnelling tool that makes traffic resemble ordinary DNS requests
 category: Tunnelling
 tags: tunnel, dual use, detection
 image: /static/images/talk/slide-47.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://github.com/iagox86/dnscat2
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

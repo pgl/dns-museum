@@ -4,7 +4,7 @@ summary: A route that delivers song lyrics through DNS names, including a season
 category: Traceroutes
 tags: traceroute, music, art
 image: /static/images/talk/slide-13.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://www.youtube.com/watch?v=O03k0DV2m1k
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

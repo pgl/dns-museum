@@ -4,7 +4,7 @@ summary: A cache description retrieved from a carefully formed DNS query.
 category: Tools and toys
 tags: geocaching, TXT records, games
 image: /static/images/talk/slide-32.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://coord.info/GC615NM
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

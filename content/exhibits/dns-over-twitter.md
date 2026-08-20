@@ -4,7 +4,7 @@ summary: A short-lived resolver interface built around a social-media account.
 category: DNS over something else
 tags: Twitter, resolver, messaging
 image: /static/images/talk/slide-16.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://news.ycombinator.com/item?id=19900808
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

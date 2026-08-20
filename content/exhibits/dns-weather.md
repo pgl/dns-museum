@@ -4,7 +4,7 @@ summary: Weather information delivered as DNS answers through the Drink service.
 category: Tools and toys
 tags: weather, TXT records, utilities
 image: /static/images/talk/slide-35.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://x.com/LAB3W_ORJ/status/1719732574333837745
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

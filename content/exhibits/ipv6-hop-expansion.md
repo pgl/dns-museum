@@ -4,7 +4,7 @@ summary: A traceroute extension that uses IPv6 to reveal more of a path.
 category: Traceroutes
 tags: traceroute, IPv6, routing
 image: /static/images/talk/slide-8.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://github.com/sehaas/fakert
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

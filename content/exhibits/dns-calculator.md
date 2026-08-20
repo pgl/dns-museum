@@ -4,7 +4,7 @@ summary: Arithmetic results returned from DNS queries.
 category: Tools and toys
 tags: calculator, TXT records, utilities
 image: /static/images/talk/slide-26.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://www.cambus.net/interesting-dns-hacks/
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

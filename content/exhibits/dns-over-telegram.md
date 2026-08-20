@@ -4,7 +4,7 @@ summary: A chat bot that resolves DNS questions from a messaging conversation.
 category: DNS over something else
 tags: Telegram, bot, resolver
 image: /static/images/talk/slide-17.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://twitter.com/pengelana/status/1263801952942518272
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

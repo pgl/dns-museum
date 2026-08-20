@@ -4,7 +4,7 @@ summary: A text-message exchange used as a transport for DNS queries and replies
 category: DNS over something else
 tags: SMS, transport, messaging
 image: /static/images/talk/slide-15.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://twitter.com/scott_helme/status/982401557906862080
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

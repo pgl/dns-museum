@@ -4,7 +4,7 @@ summary: A tiny command that streams audio data through repeated DNS queries.
 category: Other things
 tags: audio, MP3, shell
 image: /static/images/talk/slide-57.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://gist.github.com/Manawyrm/718cf8ab6ba59ba95d9743d01b1763dd
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

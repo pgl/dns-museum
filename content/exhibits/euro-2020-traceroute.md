@@ -4,7 +4,7 @@ summary: A football-themed route that makes the trip to a host a small spectacle
 category: Traceroutes
 tags: traceroute, sport, hostname art
 image: /static/images/talk/slide-9.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://github.com/sehaas/fakert
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

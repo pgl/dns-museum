@@ -4,7 +4,7 @@ summary: A proof of concept that carries HTTP requests in DNS labels and reconst
 category: Tunnelling
 tags: HTTP, tunnel, proof of concept
 image: /static/images/talk/slide-44.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://github.com/veggiedefender/browsertunnel
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

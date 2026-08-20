@@ -4,7 +4,7 @@ summary: A GitHub project that turns a ping-style request into a DNS interaction
 category: DNS over something else
 tags: ping, GitHub, diagnostics
 image: /static/images/talk/slide-20.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://github.com/jamespwilliams/dns-over-ping
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

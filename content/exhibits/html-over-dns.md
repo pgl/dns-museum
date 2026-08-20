@@ -4,7 +4,7 @@ summary: A web page whose contents are fetched from DNS rather than from the web
 category: Tools and toys
 tags: HTML, web, TXT records
 image: /static/images/talk/slide-38.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://news.ycombinator.com/item?id=28218406
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

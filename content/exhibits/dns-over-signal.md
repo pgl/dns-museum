@@ -4,7 +4,7 @@ summary: A Signal service that shows a DNS query and answer as a secure-message 
 category: DNS over something else
 tags: Signal, messaging, resolver
 image: /static/images/talk/slide-19.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://x.com/_sehaas/status/1469773473979506689
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

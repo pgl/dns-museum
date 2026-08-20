@@ -4,7 +4,7 @@ summary: Image metadata and fragments represented through DNS records.
 category: Other things
 tags: images, data, TXT records
 image: /static/images/talk/slide-55.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://asherfalcon.com/blog/posts/2
 status: published
 updated: 2026-08-20T00:00:00Z
 ---

@@ -4,7 +4,7 @@ summary: A proof of concept that treats DNS as a distributed key-value data stor
 category: Other things
 tags: NoSQL, database, key-value
 image: /static/images/talk/slide-50.webp
-source: https://docs.google.com/presentation/d/1bRxNC3LNr-t7YYcOVl-aOHKL1llHNWRDxwpNFjIHCFo/edit
+source: https://dyna53.io/
 status: published
 updated: 2026-08-20T00:00:00Z
 ---
