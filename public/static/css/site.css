@@ -6,6 +6,7 @@
   --line: #e5e5e5;
   --accent: #10a37f;
   --accent-dark: #0d8c6d;
+  --navy: #173b67;
   --danger: #b42318;
   --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
@@ -34,6 +35,8 @@ h1, h2, h3 { margin: 0; font-family: var(--font); letter-spacing: -0.035em; line
 .section-heading > p:not(.eyebrow):not(.categories) { margin: 0.7rem 0 0; color: var(--muted); }
 .collection-section + .collection-section { margin-top: 3.25rem; }
 .collection-section h2 { margin-bottom: 1rem; font-size: 1.35rem; font-weight: 650; }
+.category-heading-link { color: var(--navy); text-decoration: none; }
+.category-heading-link:hover { color: var(--navy); text-decoration: underline; text-decoration-color: currentColor; }
 .categories-page { width: min(860px, 100%); margin: 0 auto; padding: 2.5rem 0 5rem; }
 .category-list-section + .category-list-section { margin-top: 2.5rem; }
 .category-list-section h2 { margin-bottom: 0.65rem; font-size: 1.25rem; font-weight: 650; }
