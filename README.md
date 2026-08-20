@@ -2,17 +2,18 @@
 
 The Museum of DNS is a small, Markdown-backed field guide to unusual uses of the Domain Name System. It starts with exhibits from Peter Lowe's **Bizarre and Unusual Uses of DNS** talk and is designed to grow into a public reference, including a future, clearly separated DNS-abuse collection.
 
-## Run locally
+## Run locally with nginx
 
 ```sh
 cp .env.example .env
-set -a; source .env; set +a
-go run ./cmd/museum
+brew install nginx
+cp nginx/museum-of-dns.conf /opt/homebrew/etc/nginx/servers/museum-of-dns.conf
+brew services start nginx
 ```
 
-Open `http://127.0.0.1:8080`. The public collection is available at `/`; sign in at `/admin`.
+Open `http://127.0.0.1:8081`. The public collection is available at `/`; sign in at `/admin`.
 
-Set `MUSEUM_ADMIN_PASSWORD` and a long, unique `MUSEUM_SESSION_SECRET` before deployment. Set `MUSEUM_SECURE_COOKIES=true` when the site uses HTTPS.
+Set `MUSEUM_ADMIN_PASSWORD` in `.env` before using the curator desk. Set `MUSEUM_SECURE_COOKIES=true` when the site uses HTTPS.
 
 ## Content model
 
@@ -39,6 +40,6 @@ Use `status: draft` to keep an exhibit in the curator desk until it is ready. Th
 
 ## Deployment
 
-The app is a single Go binary with no runtime dependencies. Serve it behind an HTTPS reverse proxy, set a strong session secret, and run it from a checkout where the service account can write only `content/exhibits`. Back up that directory or push changes to GitHub after editorial updates.
+The app uses PHP-FPM behind nginx. Serve it through HTTPS in production, set a strong curator password, and run it from a checkout where the PHP-FPM user can write only `content/exhibits`. Back up that directory or push changes to GitHub after editorial updates.
 
 Slide images are optimised WebP copies of selected source slides in `static/images/talk`. The original talk remains the source of attribution; do not add third-party assets without recording their source in the exhibit.
