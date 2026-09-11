@@ -1,13 +1,13 @@
-# The DNS Museum
+# DNS Museum
 
-The DNS Museum is a small, Markdown-backed field guide to unusual uses of the Domain Name System. It starts with entries from Peter Lowe's **Bizarre and Unusual Uses of DNS** talk and is designed to grow into a public reference, including a future, clearly separated DNS-abuse collection.
+DNS Museum is a small, Markdown-backed field guide to unusual uses of the Domain Name System. It starts with entries from Peter Lowe's **Bizarre and Unusual Uses of DNS** talk and is designed to grow into a public reference, including a future, clearly separated DNS-abuse collection.
 
 ## Run locally with nginx
 
 ```sh
 cp .env.example .env
 brew install nginx
-cp nginx/museum-of-dns.conf /opt/homebrew/etc/nginx/servers/museum-of-dns.conf
+cp nginx/dns-museum.conf /opt/homebrew/etc/nginx/servers/dns-museum.conf
 brew services start nginx
 ```
 
