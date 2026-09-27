@@ -1,6 +1,6 @@
 ---
 title: DNS over Twitter
-summary: A short-lived resolver interface built around a social-media account.
+summary: A short-lived social account accepted DNS lookup requests and posted answers, using a platform API as the client interface.
 category: DNS over something else
 tags: Twitter, resolver, messaging
 image: /static/images/talk/slide-16.webp

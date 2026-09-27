@@ -1,6 +1,6 @@
 ---
 title: DNS geocaching
-summary: A cache description retrieved from a carefully formed DNS query.
+summary: A carefully formed DNS query retrieves a geocaching clue in TXT data, turning the resolver into a lightweight interface for a field game.
 category: Tools and toys
 tags: geocaching, TXT records, games
 image: /static/images/talk/slide-32.webp

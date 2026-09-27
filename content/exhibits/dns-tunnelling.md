@@ -1,6 +1,6 @@
 ---
 title: DNS tunnelling
-summary: Data moved through DNS queries and answers instead of its usual transport.
+summary: DNS tunnelling encodes data in query names and answers to create a constrained communications channel, a pattern with both legitimate and harmful uses.
 category: Tunnelling
 tags: tunnelling, transport, record types
 image: /static/images/talk/slide-42.webp

@@ -29,7 +29,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .site-header { position: sticky; top: 0; z-index: 10; display: flex; min-height: 4.1rem; align-items: center; justify-content: space-between; gap: 2rem; width: 100%; padding-inline: max(1.25rem, calc((100vw - 1180px) / 2)); border-bottom: 1px solid var(--line); background: rgb(255 255 255 / 94%); backdrop-filter: blur(12px); }
 main, footer { width: min(1180px, calc(100% - 2.5rem)); margin-inline: auto; }
 .wordmark { display: inline-flex; align-items: baseline; gap: 0.32rem; color: var(--navy); font-size: 1rem; font-weight: 720; letter-spacing: -0.025em; text-decoration: none; white-space: nowrap; }
-.wordmark span:first-child { color: var(--quiet); font-size: 0.78em; font-weight: 550; }
+.wordmark span:first-child, .wordmark i { color: var(--quiet); font-size: 0.78em; font-style: normal; font-weight: 550; }
 .wordmark strong { color: var(--accent); font-weight: 760; letter-spacing: 0.02em; }
 .site-nav { display: flex; align-items: center; gap: 0.25rem; }
 .site-nav a { padding: 0.42rem 0.65rem; border-radius: 0.3rem; color: var(--muted); font-size: 0.875rem; font-weight: 600; text-decoration: none; }
@@ -60,15 +60,15 @@ h1, h2, h3 { margin: 0; color: var(--navy); font-family: var(--font); letter-spa
 .exhibit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; }
 .exhibit-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 0.4rem; background: var(--surface); transition: border-color 140ms ease, transform 140ms ease; }
 .exhibit-card:hover { border-color: #9fb4ca; transform: translateY(-1px); }
-.card-heading { min-height: 5.2rem; padding: 0.9rem 0.95rem 0.72rem; }
+.card-heading { min-height: 5.2rem; flex: 0 0 auto; padding: 0.9rem 0.95rem 0.72rem; }
 .card-heading h3 { font-size: 1.04rem; font-weight: 720; letter-spacing: -0.02em; }
 .card-heading h3 a { color: var(--navy); text-decoration: none; }
 .card-heading h3 a:hover { color: var(--accent); }
 .card-heading .eyebrow { margin: 0.32rem 0 0; color: var(--quiet); font-size: 0.69rem; letter-spacing: 0.06em; }
-.screenshot-frame { display: grid; height: 12.25rem; place-items: center; padding: 0.72rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface-blue); }
-.screenshot-frame img { width: 100%; height: 100%; border: 1px solid var(--line); background: #fff; object-fit: contain; }
+.screenshot-frame { display: grid; min-height: 0; flex: 0 0 12.25rem; place-items: center; padding: 0.72rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface-blue); }
+.screenshot-frame img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; border: 1px solid var(--line); background: #fff; object-fit: contain; }
 .card-body { display: flex; flex: 1; flex-direction: column; padding: 0.82rem 0.95rem 0.9rem; }
-.card-body p { margin: 0 0 0.75rem; color: var(--muted); font-size: 0.88rem; line-height: 1.48; text-wrap: pretty; }
+.card-body p { overflow-wrap: anywhere; margin: 0 0 0.75rem; color: var(--muted); font-size: 0.88rem; line-height: 1.48; text-wrap: pretty; }
 .text-link, .card-link, .back-link { color: var(--accent-dark); font-size: 0.84rem; font-weight: 680; }
 .card-link { width: fit-content; margin-top: auto; text-decoration: none; }
 .card-link span { display: inline-block; margin-left: 0.15rem; transition: transform 140ms ease; }
@@ -160,7 +160,7 @@ td small { display: block; }
   main, footer { width: min(100% - 2rem, 1180px); }
   .site-nav { gap: 0; }
   .site-nav a { padding-inline: 0.45rem; font-size: 0.8rem; }
-  .wordmark span:first-child { display: none; }
+  .wordmark span:first-child, .wordmark i { display: none; }
   .collection, .categories-page, .exhibit, .admin { padding-top: 2rem; }
   .category-index { grid-template-columns: 1fr 1fr; }
   .category-index a { border-top: 1px solid var(--line); }

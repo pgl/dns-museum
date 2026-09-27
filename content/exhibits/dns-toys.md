@@ -1,6 +1,6 @@
 ---
 title: dns.toys
-summary: A group of small command-line services exposed through DNS.
+summary: dns.toys exposes small utilities through crafted DNS names, including currency conversion, world time, IP echo, number-to-words, and a usable slider range.
 category: Tools and toys
 tags: dns.toys, command line, utilities
 image: /static/images/talk/slide-31.webp

@@ -1,6 +1,6 @@
 ---
 title: CatDNS
-summary: A DNS server that resolves names to cats.
+summary: CatDNS is an intentionally playful authoritative DNS server: ask it for a name and it answers with a cat-themed result.
 category: Other things
 tags: cats, DNS server, creative coding
 image: /static/images/talk/slide-52.webp

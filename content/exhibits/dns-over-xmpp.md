@@ -1,6 +1,6 @@
 ---
 title: DNS over XMPP
-summary: A deferred XMPP extension for DNS queries and responses.
+summary: XEP-0418 describes how XMPP can carry DNS requests and responses, bringing resolver lookups into a formal messaging extension.
 category: DNS over something else
 tags: XMPP, standards, messaging
 image: /static/images/talk/slide-22.webp

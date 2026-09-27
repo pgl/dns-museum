@@ -1,6 +1,6 @@
 ---
 title: BIMI records
-summary: Brand indicators for email published in DNS TXT records.
+summary: BIMI uses DNS records to point mail systems to brand logos; the talk notes that DMARC must be configured before the logo display can be used.
 category: Other things
 tags: BIMI, email, TXT records, brands
 image: /static/images/talk/slide-51.webp

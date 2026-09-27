@@ -1,6 +1,6 @@
 ---
 title: Google DNS cartoon
-summary: A comic about Google focusing on its public DNS server.
+summary: This comic imagines Google focusing on its 8.8.8.8 public resolver, a cultural snapshot of how visible public DNS became.
 category: Tools and toys
 tags: Google, public DNS, comic
 image: /static/images/talk/slide-28.webp

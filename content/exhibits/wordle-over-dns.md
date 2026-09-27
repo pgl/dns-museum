@@ -1,6 +1,6 @@
 ---
 title: Wordle over DNS
-summary: A Wordle-style game played entirely through DNS queries.
+summary: Each DNS query submits a Wordle-style guess and the answer reports game state, expressing an interactive loop in short DNS messages.
 category: Tools and toys
 tags: Wordle, game, DNS queries
 image: /static/images/talk/slide-39.webp

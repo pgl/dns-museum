@@ -1,6 +1,6 @@
 ---
 title: DNS over phone
-summary: A service for calling a recursive DNS resolver by telephone.
+summary: DialDNS lets a caller ask a recursive resolver questions by telephone, turning spoken interaction into a novel DNS client interface.
 category: DNS over something else
 tags: telephone, resolver, DialDNS
 image: /static/images/talk/slide-23.webp

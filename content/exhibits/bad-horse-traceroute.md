@@ -1,8 +1,8 @@
 ---
 title: Bad Horse traceroute
-summary: A traceroute that delivers a message from Dr Horrible’s Sing-Along Blog.
+summary: A traceroute to bad.horse spells lyrics through reverse-DNS names; signed.bad.horse adds a separate Easter egg in its TLS certificate chain.
 category: Traceroutes
-tags: traceroute, music, bad.horse, DNSSEC
+tags: traceroute, music, bad.horse, TLS certificates
 image: /static/images/talk/slide-12.webp
 source: https://www.youtube.com/watch?v=O03k0DV2m1k
 status: published

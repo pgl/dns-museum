@@ -1,6 +1,6 @@
 ---
 title: DNS over IRC
-summary: Dynamic DNS updates carried through Internet Relay Chat.
+summary: An IRC channel carries dynamic DNS update requests; the published answers still come from DNS, while chat serves as the separate change path.
 category: DNS over something else
 tags: IRC, dynamic DNS, updates
 image: /static/images/talk/slide-18.webp

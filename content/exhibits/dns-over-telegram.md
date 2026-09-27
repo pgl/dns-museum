@@ -1,6 +1,6 @@
 ---
 title: DNS over Telegram
-summary: A chat bot that resolves DNS questions from a messaging conversation.
+summary: A Telegram bot accepts a DNS question in chat and returns the resolver’s answer as a message, placing lookup behind a messaging interface.
 category: DNS over something else
 tags: Telegram, bot, resolver
 image: /static/images/talk/slide-17.webp

@@ -1,6 +1,6 @@
 ---
 title: Wikipedia over DNS
-summary: Wikipedia articles retrieved through DNS queries.
+summary: A DNS query triggers a Wikipedia lookup and returns the result in an answer, using DNS as a text retrieval path for clients with limited connectivity.
 category: Tools and toys
 tags: Wikipedia, TXT records, lookup
 image: /static/images/talk/slide-37.webp

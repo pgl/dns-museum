@@ -1,6 +1,6 @@
 ---
 title: American Pie traceroute
-summary: A traceroute that follows the verses of American Pie.
+summary: A predictable traceroute path uses PTR records on its routers to spell lines from “American Pie”, turning reverse DNS into a lyric display.
 category: Traceroutes
 tags: traceroute, music, makerforce.io
 image: /static/images/talk/slide-10.webp

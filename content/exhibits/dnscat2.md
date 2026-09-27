@@ -1,6 +1,6 @@
 ---
 title: dnscat2
-summary: A DNS tunnelling tool that makes traffic resemble ordinary DNS requests.
+summary: dnscat2 carries a full TCP/IP session through DNS and supports interactive traffic such as files and messages; its DNS-like appearance makes monitoring important.
 category: Tunnelling
 tags: tunnel, dual use, detection
 image: /static/images/talk/slide-47.webp
@@ -9,6 +9,6 @@ status: published
 updated: 2026-08-20T00:00:00Z
 ---
 
-dnscat2 is a well-known example of an interactive channel transported through DNS. Its traffic can look superficially normal, which makes it relevant to both protocol history and security monitoring.
+dnscat2 carries an interactive TCP/IP session through DNS and supports tasks such as file transfer and messaging. The talk notes that the traffic can resemble ordinary DNS, which makes it relevant to security monitoring and incident response.
 
-This museum entry keeps the focus on classification and context. Detailed defensive material belongs in the planned DNS abuse section.
+This exhibit describes the technique and its defensive context without operational setup instructions.

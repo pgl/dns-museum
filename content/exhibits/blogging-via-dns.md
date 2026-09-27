@@ -1,6 +1,6 @@
 ---
 title: Blogging via DNS
-summary: Blog posts published as TXT records.
+summary: txtrex stores blog posts in TXT records: query one name to list posts and another to retrieve a post, making publishing possible with DNS alone.
 category: Tools and toys
 tags: blogging, TXT records, publishing
 image: /static/images/talk/slide-36.webp
@@ -9,6 +9,6 @@ status: published
 updated: 2026-08-20T00:00:00Z
 ---
 
-txtrex uses TXT records to publish blog posts. Updating DNS becomes the act of publishing.
+txtrex publishes posts as DNS TXT records. One query lists available posts; another retrieves a post’s text.
 
-The model is deliberately constrained, which is part of the appeal. A post is DNS text, and a reader needs only a DNS client to retrieve it.
+That makes the publishing path easy to inspect with DNS tools, but it inherits the size limits, cache behaviour, and update delay of DNS.

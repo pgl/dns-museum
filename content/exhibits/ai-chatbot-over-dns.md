@@ -1,6 +1,6 @@
 ---
 title: AI chatbot over DNS
-summary: A chatbot interface designed to work through DNS while offline from the usual web.
+summary: An experimental chatbot accepts conversational requests as DNS lookups, trading a familiar interface for DNS-sized questions and answers.
 category: Other things
 tags: AI, chatbot, offline, DNS queries
 image: /static/images/talk/slide-58.webp
