@@ -1,6 +1,6 @@
 ---
 title: ISS location
-summary: The International Space Station’s position returned in DNS LOC records.
+summary: A DNS LOC record publishes geographic coordinates for the International Space Station, making a rarely used record type answer a live question.
 category: Tools and toys
 tags: ISS, LOC records, geolocation
 image: /static/images/talk/slide-30.webp

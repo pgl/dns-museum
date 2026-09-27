@@ -1,6 +1,6 @@
 ---
 title: DNS calculator
-summary: Arithmetic results returned from DNS queries.
+summary: A Reverse Polish calculator accepts operands in a DNS name and returns a dynamically computed answer, a small service you can query with dig.
 category: Tools and toys
 tags: calculator, TXT records, utilities
 image: /static/images/talk/slide-26.webp
@@ -9,6 +9,6 @@ status: published
 updated: 2026-08-20T00:00:00Z
 ---
 
-Several DNS zones have used TXT answers as a tiny command-line service. A calculator is a clear example because the input and output are small, textual, and easy to inspect with `dig`.
+The Postel.org example is a Reverse Polish notation calculator. A query name carries the operands and operation; the authoritative server calculates the result and returns it dynamically.
 
-Availability changes over time, so treat these services as exhibits rather than production calculators.
+The input and output are small enough to inspect with `dig`, but the design is best understood as a protocol experiment rather than a general-purpose calculator.

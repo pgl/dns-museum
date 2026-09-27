@@ -1,6 +1,6 @@
 ---
 title: DNS weather
-summary: Weather information delivered as DNS answers through the Drink service.
+summary: The Drink DNS server returns current or next-day weather in TXT answers; encode a city and time in the queried name to retrieve the report.
 category: Tools and toys
 tags: weather, TXT records, utilities
 image: /static/images/talk/slide-35.webp
@@ -9,6 +9,6 @@ status: published
 updated: 2026-08-20T00:00:00Z
 ---
 
-Live data can be made queryable through a DNS label. This service used the same engine as the drink example and returned a compact weather report.
+Drink can return current or next-day weather as TXT data. The queried name includes a city, a time selector such as `now` or `tomorrow`, and the weather service label.
 
-The mechanism illustrates a recurring museum theme: DNS as an interface for small, read-mostly datasets.
+This makes DNS a compact interface to a changing dataset, while the answer’s TTL and resolver cache affect how quickly clients see updates.

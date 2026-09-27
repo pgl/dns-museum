@@ -1,6 +1,6 @@
 ---
 title: DNS ping
-summary: A GitHub project that turns a ping-style request into a DNS interaction.
+summary: This project recasts a ping-style diagnostic as DNS exchanges, exploring how a familiar reachability check changes when a resolver is the path.
 category: DNS over something else
 tags: ping, GitHub, diagnostics
 image: /static/images/talk/slide-20.webp

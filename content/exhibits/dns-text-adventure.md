@@ -1,6 +1,6 @@
 ---
 title: DNS text adventure
-summary: A text adventure played through DNS queries and round-robin answers.
+summary: Players issue DNS queries as game actions and read story text in the answers; round-robin responses can add chance to the adventure.
 category: Tools and toys
 tags: game, round robin DNS, text adventure
 image: /static/images/talk/slide-33.webp

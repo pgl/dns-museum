@@ -1,6 +1,6 @@
 ---
 title: DNS configuration management
-summary: Route 53 used as a store for application configuration.
+summary: A Route 53 proposal puts machine configuration in DNS records, using lookups in place of tools such as Puppet, Ansible, or Chef.
 category: Other things
 tags: Route 53, configuration, AWS
 image: /static/images/talk/slide-49.webp

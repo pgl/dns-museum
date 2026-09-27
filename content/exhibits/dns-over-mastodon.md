@@ -1,6 +1,6 @@
 ---
 title: DNS over Mastodon
-summary: A Mastodon-based DNS service that uses DNSSEC authentication.
+summary: A Mastodon-linked resolver experiment combines federated social messaging with DNS queries and DNSSEC-based authentication.
 category: DNS over something else
 tags: Mastodon, DNSSEC, federation
 image: /static/images/talk/slide-21.webp

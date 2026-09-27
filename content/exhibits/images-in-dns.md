@@ -1,6 +1,6 @@
 ---
 title: Images in DNS
-summary: Image metadata and fragments represented through DNS records.
+summary: This experiment divides image data into DNS-sized fragments and reassembles them at the client, stretching a lookup protocol into bulk transfer.
 category: Other things
 tags: images, data, TXT records
 image: /static/images/talk/slide-55.webp

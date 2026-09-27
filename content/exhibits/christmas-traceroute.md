@@ -1,6 +1,6 @@
 ---
 title: Christmas traceroute
-summary: A seasonal traceroute that returns a repeated Christmas greeting.
+summary: A static traceroute uses reverse-DNS names to reveal a Christmas tree, with each hop adding another branch to the seasonal picture.
 category: Traceroutes
 tags: traceroute, Christmas, reverse DNS
 image: /static/images/talk/slide-13.webp

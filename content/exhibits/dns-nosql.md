@@ -1,6 +1,6 @@
 ---
 title: DNS NoSQL store
-summary: A proof of concept that treats DNS as a distributed key-value data store.
+summary: A NoSQL experiment treats names in a DNS zone as hierarchical keys and their records as values, while inheriting DNS caching and update semantics.
 category: Other things
 tags: NoSQL, database, key-value
 image: /static/images/talk/slide-50.webp

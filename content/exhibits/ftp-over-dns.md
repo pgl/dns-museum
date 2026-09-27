@@ -1,6 +1,6 @@
 ---
 title: FTP over DNS
-summary: File Transfer Protocol traffic transported through DNS.
+summary: FToDNS adapts file-transfer exchanges to DNS queries and answers, splitting data across a transport with strict size and timing limits.
 category: Tunnelling
 tags: FTP, tunnelling, file transfer
 image: /static/images/talk/slide-45.webp

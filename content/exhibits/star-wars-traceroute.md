@@ -1,6 +1,6 @@
 ---
 title: Star Wars traceroute
-summary: A route to beagle.net that turned an ordinary network diagnostic into a space opera.
+summary: A predictable static route sends probes through selected IP addresses whose PTR records spell a Star Wars story in ordinary traceroute output.
 category: Traceroutes
 tags: traceroute, art, routing
 image: /static/images/talk/slide-7.webp

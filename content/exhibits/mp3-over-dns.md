@@ -1,6 +1,6 @@
 ---
 title: MP3 over DNS
-summary: A tiny command that streams audio data through repeated DNS queries.
+summary: A shell pipeline requests encoded audio fragments through DNS, rebuilds the bytes, and plays them: an intentionally inefficient media transport.
 category: Other things
 tags: audio, MP3, shell
 image: /static/images/talk/slide-57.webp

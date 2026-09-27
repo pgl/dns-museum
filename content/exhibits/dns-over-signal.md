@@ -1,6 +1,6 @@
 ---
 title: DNS over Signal
-summary: A Signal service that shows a DNS query and answer as a secure-message conversation.
+summary: A Signal conversation presents DNS questions and answers as secure messages, exposing the resolver exchange through a familiar chat interface.
 category: DNS over something else
 tags: Signal, messaging, resolver
 image: /static/images/talk/slide-19.webp

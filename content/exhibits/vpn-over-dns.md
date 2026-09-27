@@ -1,6 +1,6 @@
 ---
 title: VPN over DNS
-summary: A tunnel design that places VPN traffic inside DNS transport.
+summary: The Android app SlowDNS presents a VPN carried over DNS, an inventive option for networks that allow DNS but restrict other traffic.
 category: Tunnelling
 tags: VPN, tunnel, transport
 image: /static/images/talk/slide-46.webp

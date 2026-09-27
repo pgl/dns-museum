@@ -1,6 +1,6 @@
 ---
 title: My IP over DNS
-summary: A resolver query that reports the client address it sees.
+summary: A resolver query reports the client address visible to the DNS service, which can differ from the address configured on the device.
 category: Tools and toys
 tags: client IP, resolver, TXT records
 image: /static/images/talk/slide-27.webp

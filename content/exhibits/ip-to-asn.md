@@ -1,6 +1,6 @@
 ---
 title: IP to ASN
-summary: An IP address to autonomous-system lookup delivered through DNS.
+summary: Team Cymru maps an IP address to its autonomous system number through a structured DNS query, giving network operators a scriptable routing lookup.
 category: Tools and toys
 tags: ASN, Team Cymru, network operations
 image: /static/images/talk/slide-29.webp

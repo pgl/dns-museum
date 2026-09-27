@@ -1,6 +1,6 @@
 ---
 title: DNS TXT toys
-summary: A set of small DNS TXT-record experiments by B’ad Samurai.
+summary: These TXT-record experiments return ASCII art, mazes, QR codes, music, and games, showing how one textual answer format can support many toys.
 category: Tools and toys
 tags: games, experiments, Mastodon
 image: /static/images/talk/slide-40.webp

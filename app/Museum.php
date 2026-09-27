@@ -108,6 +108,15 @@ function safe_url(string $url): bool
     return $parts !== false && (!isset($parts['scheme']) || in_array(strtolower($parts['scheme']), ['https', 'http', 'mailto'], true));
 }
 
+function format_updated_date(string $value): string
+{
+    try {
+        return (new DateTimeImmutable($value))->format('j F Y');
+    } catch (Exception) {
+        return '';
+    }
+}
+
 function render_markdown(string $markdown): string
 {
     $lines = preg_split('/\R/', $markdown) ?: [];

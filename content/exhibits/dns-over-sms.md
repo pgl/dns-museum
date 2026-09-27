@@ -1,6 +1,6 @@
 ---
 title: DNS over SMS
-summary: A text-message exchange used as a transport for DNS queries and replies.
+summary: SMS carries a compact representation of DNS questions and replies, demonstrating a constrained alternative to the usual UDP or TCP exchange.
 category: DNS over something else
 tags: SMS, transport, messaging
 image: /static/images/talk/slide-15.webp

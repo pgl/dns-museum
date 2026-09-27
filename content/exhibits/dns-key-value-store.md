@@ -1,6 +1,6 @@
 ---
 title: DNS key-value store
-summary: A public interface for storing and retrieving values from a DNS domain.
+summary: DNSKV is a generic public key-value service: names identify keys and DNS answers return values, backed by caches distributed across recursive resolvers.
 category: Other things
 tags: key-value, database, TXT records
 image: /static/images/talk/slide-54.webp
@@ -9,6 +9,6 @@ status: published
 updated: 2026-08-20T00:00:00Z
 ---
 
-The service shows a literal key-value model: form a name for the key, then recover the value from DNS. It is compact and intuitive enough to demonstrate the pattern to anyone with a resolver.
+DNSKV exposes a generic key-value interface through DNS names and answers. The talk highlights how recursive caches around the world can make repeated lookups fast and resilient.
 
-Do not place confidential information in public DNS. Caching and replication are features here, not privacy controls.
+Public DNS is not private storage: query data and answers pass through resolvers, and caching affects when updates become visible.

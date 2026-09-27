@@ -1,6 +1,6 @@
 ---
 title: Euro 2020 traceroute
-summary: A football-themed route that makes the trip to a host a small spectacle.
+summary: A traceroute display used live Euro 2020 scores, pairing a controlled route with DNS names to turn network diagnostics into a changing scoreboard.
 category: Traceroutes
 tags: traceroute, sport, hostname art
 image: /static/images/talk/slide-9.webp
@@ -9,6 +9,6 @@ status: published
 updated: 2026-08-20T00:00:00Z
 ---
 
-DNS labels are short, ordered, and visible in common diagnostics. That makes them a perfect medium for a themed path.
+Sebastian Haas’s Euro 2020 example used a controlled route and DNS names to show live football scores in traceroute output. His `fakert` library can create a local tunnel device and static routes for experiments like this.
 
-This exhibit captures one of the many ways operators turn routable infrastructure into public-facing ephemera.
+The changing score gives the familiar hop list a live data source; reverse-DNS labels provide the display.

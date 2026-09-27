@@ -1,6 +1,6 @@
 ---
 title: DNS over DONUTS
-summary: DNS carried over normal, unencrypted TCP streams.
+summary: DONUTS expands to “DNS over normal, unencrypted TCP streams”: a deliberately literal reminder that DNS can run over a simple stream transport.
 category: DNS over something else
 tags: DONUTS, transport, novelty
 image: /static/images/talk/slide-24.webp

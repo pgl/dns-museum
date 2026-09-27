@@ -1,6 +1,6 @@
 ---
 title: HTML over DNS
-summary: A web page whose contents are fetched from DNS rather than from the web server that frames it.
+summary: A web client retrieves page content from DNS answers while a conventional server supplies the surrounding page, blurring lookup and content delivery.
 category: Tools and toys
 tags: HTML, web, TXT records
 image: /static/images/talk/slide-38.webp

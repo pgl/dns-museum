@@ -1,6 +1,6 @@
 ---
 title: HTTP over DNS
-summary: A proof of concept that carries HTTP requests in DNS labels and reconstructs them at a server.
+summary: A browser tunnel encodes arbitrary request strings in DNS subdomain labels and reconstructs them at the far end, showing the overhead of HTTP over DNS.
 category: Tunnelling
 tags: HTTP, tunnel, proof of concept
 image: /static/images/talk/slide-44.webp
