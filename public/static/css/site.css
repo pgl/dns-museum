@@ -15,7 +15,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+html { scroll-padding-top: 5rem; }
 body { margin: 0; background: var(--canvas); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55; }
 a { color: var(--accent-dark); text-decoration-color: #9ab9dd; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 a:hover { color: var(--accent); text-decoration-color: currentColor; }
@@ -186,6 +186,5 @@ td small { display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .exhibit-card, .card-link span { transition: none; }
 }
