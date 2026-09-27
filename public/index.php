@@ -63,14 +63,6 @@ function store_uploaded_image(string $slug): string {
     if ($info === false || !in_array($info[2], [IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_WEBP], true) || $info[0] > 8000 || $info[1] > 8000 || $info[0] * $info[1] > 20000000) {
         throw new InvalidArgumentException('Use a JPEG, PNG, or WebP image up to 8000 pixels wide and high.');
     }
-    $thumbnailUpload = $_FILES['image_thumbnail'] ?? null;
-    if (!is_array($thumbnailUpload) || ($thumbnailUpload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK || !is_uploaded_file((string) $thumbnailUpload['tmp_name']) || (int) $thumbnailUpload['size'] > 1024 * 1024) {
-        throw new InvalidArgumentException('The browser could not prepare the thumbnail. Choose the image again and retry.');
-    }
-    $thumbnailInfo = @getimagesize((string) $thumbnailUpload['tmp_name']);
-    if ($thumbnailInfo === false || $thumbnailInfo[2] !== IMAGETYPE_WEBP || max($thumbnailInfo[0], $thumbnailInfo[1]) > 640) {
-        throw new InvalidArgumentException('The generated thumbnail is invalid. Choose the image again and retry.');
-    }
     $directory = dirname(__DIR__) . '/public/static/images/uploads';
     $thumbDirectory = $directory . '/thumbnails';
     foreach ([$directory, $thumbDirectory] as $path) {
@@ -80,7 +72,17 @@ function store_uploaded_image(string $slug): string {
     $original = $directory . '/' . $slug . '.' . $extension;
     $thumbnail = $thumbDirectory . '/' . $slug . '.webp';
     if (!move_uploaded_file((string) $upload['tmp_name'], $original)) { throw new RuntimeException('The uploaded image could not be saved.'); }
-    if (!move_uploaded_file((string) $thumbnailUpload['tmp_name'], $thumbnail)) { @unlink($original); throw new RuntimeException('The thumbnail could not be saved.'); }
+    $convert = config_value('MUSEUM_IMAGE_MAGICK', '/usr/bin/convert');
+    $temporaryThumbnail = $thumbDirectory . '/.' . $slug . '-' . bin2hex(random_bytes(6)) . '.webp';
+    if (!is_executable($convert) || !function_exists('proc_open')) { @unlink($original); throw new RuntimeException('ImageMagick is not available to create the thumbnail.'); }
+    $process = proc_open([$convert, $original, '-auto-orient', '-thumbnail', '640x640>', '-strip', '-quality', '82', '-define', 'webp:method=6', 'webp:' . $temporaryThumbnail], [0 => ['file', '/dev/null', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']], $pipes);
+    $status = is_resource($process) ? proc_close($process) : -1;
+    $thumbnailInfo = $status === 0 ? @getimagesize($temporaryThumbnail) : false;
+    if ($thumbnailInfo === false || $thumbnailInfo[2] !== IMAGETYPE_WEBP || max($thumbnailInfo[0], $thumbnailInfo[1]) > 640 || !rename($temporaryThumbnail, $thumbnail)) {
+        @unlink($temporaryThumbnail);
+        @unlink($original);
+        throw new RuntimeException('The thumbnail could not be created. Check that ImageMagick supports WebP.');
+    }
     return '/static/images/uploads/' . $slug . '.' . $extension;
 }
 
@@ -95,7 +97,7 @@ function editor(array $entry, string $error = '', string $preview = ''): void {
     <form method="post" action="<?= h($action) ?>" class="editor-form" enctype="multipart/form-data"><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>">
     <div class="field-row"><label>Title<input name="title" value="<?= form_value($entry, 'title') ?>" required></label><label>Path<input name="slug" value="<?= form_value($entry, 'slug') ?>" pattern="[a-z0-9]+(-[a-z0-9]+)*" required <?= $isExisting ? 'readonly' : '' ?>><small>lowercase words separated with hyphens</small></label></div>
     <label>Summary<textarea name="summary" rows="3" required><?= form_value($entry, 'summary') ?></textarea></label><div class="field-row"><label>Category<input name="category" value="<?= form_value($entry, 'category') ?>" required></label><label>Tags<input name="tags" value="<?= h($tags) ?>"><small>comma-separated</small></label></div>
-    <label>Slide image path<input name="image" value="<?= form_value($entry, 'image') ?>" placeholder="/static/images/talk/slide-7.webp"><small>Optional when you upload an image below.</small></label><label>Upload slide image<input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp"><input type="file" name="image_thumbnail" hidden><small>JPEG, PNG, or WebP up to 2 MB. The browser keeps the original and creates a 640-pixel WebP card thumbnail.</small></label><label>Primary source URL<input name="source" value="<?= form_value($entry, 'source') ?>" type="url"></label><label>Status<select name="status"><option value="draft" <?= ($entry['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Draft</option><option value="published" <?= ($entry['status'] ?? '') === 'published' ? 'selected' : '' ?>>Published</option></select></label>
+    <label>Slide image path<input name="image" value="<?= form_value($entry, 'image') ?>" placeholder="/static/images/talk/slide-7.webp"><small>Optional when you upload an image below.</small></label><label>Upload slide image<input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG, or WebP up to 2 MB. The server saves the original and creates a 640-pixel WebP card thumbnail.</small></label><label>Primary source URL<input name="source" value="<?= form_value($entry, 'source') ?>" type="url"></label><label>Status<select name="status"><option value="draft" <?= ($entry['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Draft</option><option value="published" <?= ($entry['status'] ?? '') === 'published' ? 'selected' : '' ?>>Published</option></select></label>
     <label>Markdown<textarea name="body" rows="18" required><?= form_value($entry, 'body') ?></textarea></label><div class="editor-actions"><button type="submit">Save entry</button><button class="secondary-button" formaction="<?= h($action) ?>/preview" formmethod="post">Preview without saving</button></div></form>
     <?php if ($isExisting): ?><form method="post" action="<?= h($action) ?>/delete" class="delete-form" data-delete-form><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"><button class="danger-button" type="submit">Delete entry</button></form><?php endif; ?>
     <?php if ($preview !== ''): ?><section class="preview"><p class="eyebrow">Unsaved preview</p><h2><?= h($entry['title']) ?></h2><?php if ($entry['image'] !== ''): ?><img src="<?= h($entry['image']) ?>" alt="Preview slide image" width="1280" height="720"><?php endif; ?><div class="prose"><?= $preview ?></div></section><?php endif; ?></section>

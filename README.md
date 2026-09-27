@@ -40,13 +40,13 @@ updated: 2026-08-20T00:00:00Z
 Markdown body here.
 ```
 
-Use `status: draft` to keep an exhibit in the curator desk until it is ready. The editor uses the same fields, writes the Markdown files, previews unsaved content, and can publish or delete an exhibit. Upload a JPEG, PNG, or WebP slide image up to 2 MB to save the original and a browser-generated 640-pixel WebP card thumbnail under `public/static/images/uploads`.
+Use `status: draft` to keep an exhibit in the curator desk until it is ready. The editor uses the same fields, writes the Markdown files, previews unsaved content, and can publish or delete an exhibit. Upload a JPEG, PNG, or WebP slide image up to 2 MB to save the original and a server-generated 640-pixel WebP card thumbnail under `public/static/images/uploads`.
 
 ## Deployment
 
 The app uses PHP-FPM behind nginx. Serve it through HTTPS in production, set a strong curator password, and run it from a checkout where the PHP-FPM user can write only `content/exhibits`. Back up that directory or push changes to GitHub after editorial updates.
 
-Slide images are optimised WebP copies of selected source slides in `static/images/talk`; their card thumbnails are in `static/images/talk/thumbnails`. The original talk remains the source of attribution; do not add third-party assets without recording their source in the exhibit. The PHP-FPM user must be able to write to `public/static/images/uploads` and its `thumbnails` subdirectory.
+Slide images are optimised WebP copies of selected source slides in `static/images/talk`; their card thumbnails are in `static/images/talk/thumbnails`. The original talk remains the source of attribution; do not add third-party assets without recording their source in the exhibit. PHP-FPM needs ImageMagick with WebP support and write access to `public/static/images/uploads` and its `thumbnails` subdirectory. Set `MUSEUM_IMAGE_MAGICK` in `.env` if the `convert` binary is not at `/usr/bin/convert`.
 
 ## License
 
