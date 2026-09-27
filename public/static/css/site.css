@@ -61,6 +61,7 @@ h1, h2, h3 { margin: 0; color: var(--navy); font-family: var(--font); letter-spa
 .exhibit-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 0.4rem; background: var(--surface); transition: border-color 140ms ease, transform 140ms ease; }
 .exhibit-card:hover { border-color: #9fb4ca; transform: translateY(-1px); }
 .card-heading { min-height: 5.2rem; flex: 0 0 auto; padding: 0.9rem 0.95rem 0.72rem; }
+.card-title-line, .entry-title-line, .exhibit-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
 .card-heading h3 { font-size: 1.04rem; font-weight: 720; letter-spacing: -0.02em; }
 .card-heading h3 a { color: var(--navy); text-decoration: none; }
 .card-heading h3 a:hover { color: var(--accent); }
@@ -84,12 +85,16 @@ h1, h2, h3 { margin: 0; color: var(--navy); font-family: var(--font); letter-spa
 .entry-list a { color: var(--navy); font-weight: 680; text-decoration: none; }
 .entry-list a:hover { color: var(--accent); }
 .entry-list span { color: var(--muted); font-size: 0.89rem; }
+.entry-title-line { justify-content: start; flex-wrap: wrap; }
 
 .categories, .tags { display: flex; flex-wrap: wrap; gap: 0.38rem; margin: 1rem 0 0; }
 .categories span, .tags span { padding: 0.2rem 0.5rem; border: 1px solid var(--line); border-radius: 0.25rem; background: var(--surface-blue); color: var(--muted); font-size: 0.73rem; font-weight: 600; }
 .exhibit { width: min(800px, 100%); margin: 0 auto; padding: 2.8rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 1.65rem; text-decoration: none; }
 .back-link:hover { text-decoration: underline; }
+.exhibit-toolbar .back-link { margin: 0 0 1.65rem; }
+.edit-page-link { flex: 0 0 auto; padding: 0.24rem 0.5rem; border: 1px solid var(--line); border-radius: 0.25rem; background: #fff; color: var(--accent-dark); font-size: 0.72rem; font-weight: 700; text-decoration: none; }
+.edit-page-link:hover { border-color: var(--accent); background: var(--surface-blue); color: var(--accent-dark); }
 .exhibit header { padding-bottom: 1.45rem; border-bottom: 2px solid var(--navy); }
 .exhibit header h1 { max-width: 46rem; font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 770; }
 .lede { max-width: 44rem; margin: 0.78rem 0 0; color: var(--muted); font-size: 1.08rem; line-height: 1.52; text-wrap: pretty; }
@@ -140,6 +145,32 @@ td small { display: block; }
 .status.published { border-color: #a9d9c7; background: #e8f7f1; color: #087052; }
 .edit { max-width: 860px; margin: 0 auto; }
 .edit .back-link { margin-bottom: 1.2rem; }
+.editor-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 1rem; margin-top: 1.5rem; }
+.editor-fields, .live-preview { min-width: 0; padding: 1rem; border: 1px solid var(--line); border-radius: 0.4rem; background: var(--surface); }
+.editor-fields > label { margin-bottom: 0.5rem; }
+.format-toolbar { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.4rem 0 0; padding: 0.5rem; border: 1px solid var(--line); border-bottom: 0; border-radius: 0.3rem 0.3rem 0 0; background: var(--surface-blue); }
+.format-toolbar span { width: 1px; margin-inline: 0.2rem; background: var(--line-strong); }
+.toolbar-button { padding: 0.32rem 0.5rem; border-color: var(--line); background: #fff; color: var(--navy); font-size: 0.75rem; }
+.toolbar-button:hover { border-color: var(--accent); background: #fff; color: var(--accent-dark); }
+.visual-editor { min-height: 28rem; max-height: 68vh; overflow: auto; padding: 0.85rem; border: 1px solid var(--line-strong); border-radius: 0 0 0.3rem 0.3rem; background: #fff; outline: none; }
+.visual-editor:focus { outline: 3px solid rgb(23 105 210 / 16%); border-color: var(--accent); }
+.visual-editor:empty::before { color: var(--quiet); content: "Write your exhibit here…"; }
+.editor-fields > small { display: block; margin-top: 0.45rem; }
+.live-preview { position: sticky; top: 5rem; max-height: calc(100vh - 6rem); overflow: auto; padding: 0.75rem; }
+.preview-label { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; padding: 0.2rem 0.35rem 0.65rem; border-bottom: 1px solid var(--line); }
+.preview-label .eyebrow { margin: 0; }
+.preview-label > span { color: var(--quiet); font-size: 0.68rem; text-align: right; }
+.preview-exhibit { width: 100%; padding: 1.25rem 0.5rem 1rem; }
+.preview-exhibit .exhibit-toolbar { display: block; }
+.preview-exhibit .back-link { visibility: hidden; }
+.preview-exhibit header h1 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+.preview-exhibit .lede { font-size: 0.95rem; }
+.preview-exhibit figure[hidden], .preview-exhibit .source-link[hidden] { display: none; }
+.preview-exhibit .prose { font-size: 0.88rem; }
+.preview-exhibit .prose h2 { font-size: 1.15rem; }
+.preview-exhibit .prose h3 { font-size: 1rem; }
+.preview-exhibit .prose pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.edit .editor-actions { margin-top: 1.25rem; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .editor-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
 .secondary-button { border-color: var(--line-strong); background: var(--surface); color: var(--navy); }
@@ -170,6 +201,8 @@ td small { display: block; }
   .category-index a:nth-child(odd) { border-left: 0; }
   .category-index a:nth-child(even) { border-left: 1px solid var(--line); }
   .exhibit-grid, .field-row { grid-template-columns: 1fr; }
+  .editor-workspace { grid-template-columns: 1fr; }
+  .live-preview { position: static; max-height: none; }
   .card-heading { min-height: auto; }
   .entry-list li { grid-template-columns: 1fr; gap: 0.2rem; }
   .admin-heading { display: block; }
