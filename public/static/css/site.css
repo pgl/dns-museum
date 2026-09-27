@@ -28,7 +28,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .skip-link:focus { top: 1rem; }
 .site-header { position: sticky; top: 0; z-index: 10; display: flex; min-height: 4.1rem; align-items: center; justify-content: space-between; gap: 2rem; width: 100%; padding-inline: max(1.25rem, calc((100vw - 1180px) / 2)); border-bottom: 1px solid var(--line); background: rgb(255 255 255 / 94%); backdrop-filter: blur(12px); }
 main, footer { width: min(1180px, calc(100% - 2.5rem)); margin-inline: auto; }
-.wordmark { display: inline-flex; align-items: baseline; gap: 0.32rem; color: var(--navy); font-size: 1rem; font-weight: 720; letter-spacing: -0.025em; text-decoration: none; white-space: nowrap; }
+.wordmark { display: inline-flex; align-items: baseline; gap: 0.32rem; color: var(--navy); font-size: 1.1rem; font-weight: 720; letter-spacing: -0.025em; text-decoration: none; white-space: nowrap; }
 .wordmark span:first-child, .wordmark i { color: var(--quiet); font-size: 0.78em; font-style: normal; font-weight: 550; }
 .wordmark strong { color: var(--accent); font-weight: 760; letter-spacing: 0.02em; }
 .site-nav { display: flex; align-items: center; gap: 0.25rem; }
