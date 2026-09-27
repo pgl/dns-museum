@@ -160,6 +160,7 @@ function render_inline(string $text): string
         return safe_url($url) ? '<a href="' . h($url) . '" rel="noopener noreferrer">' . $match[1] . '</a>' : $match[1];
     }, $text) ?? $text;
     $text = preg_replace('/`([^`]+)`/', '<code>$1</code>', $text) ?? $text;
+    $text = preg_replace('/\*\*\*([^*]+)\*\*\*/', '<strong><em>$1</em></strong>', $text) ?? $text;
     $text = preg_replace('/\*\*([^*]+)\*\*/', '<strong>$1</strong>', $text) ?? $text;
     return preg_replace('/\*([^*]+)\*/', '<em>$1</em>', $text) ?? $text;
 }

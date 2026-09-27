@@ -93,34 +93,34 @@ function editor(array $entry, string $error = '', string $preview = ''): void {
     $action = $isExisting ? '/admin/exhibits/' . rawurlencode($entry['slug']) : '/admin/exhibits/new';
     ob_start();
     ?>
-    <section class="admin edit"><a class="back-link" href="/admin">← Curator desk</a><p class="eyebrow"><?= $isExisting ? 'Edit entry' : 'New entry' ?></p><h1><?= $isExisting ? h($entry['title']) : 'New entry' ?></h1>
+    <section class="admin edit">
     <?php if ($error !== ''): ?><p class="form-error" role="alert"><?= h($error) ?></p><?php endif; ?>
-    <form method="post" action="<?= h($action) ?>" class="editor-form" enctype="multipart/form-data"><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>">
-    <div class="field-row"><label>Title<input name="title" value="<?= form_value($entry, 'title') ?>" required></label><label>Path<input name="slug" value="<?= form_value($entry, 'slug') ?>" pattern="[a-z0-9]+(-[a-z0-9]+)*" required <?= $isExisting ? 'readonly' : '' ?>><small>lowercase words separated with hyphens</small></label></div>
-    <label>Summary<textarea name="summary" rows="3" required><?= form_value($entry, 'summary') ?></textarea></label><div class="field-row"><label>Category<input name="category" value="<?= form_value($entry, 'category') ?>" required></label><label>Tags<input name="tags" value="<?= h($tags) ?>"><small>comma-separated</small></label></div>
-    <label>Slide image path<input name="image" value="<?= form_value($entry, 'image') ?>" placeholder="/static/images/talk/slide-7.webp"><small>Optional when you upload an image below.</small></label><label>Upload slide image<input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG, or WebP up to 2 MB. The server saves the original and creates a 640-pixel WebP card thumbnail.</small></label><label>Primary source URL<input name="source" value="<?= form_value($entry, 'source') ?>" type="url"></label><label>Status<select name="status"><option value="draft" <?= ($entry['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Draft</option><option value="published" <?= ($entry['status'] ?? '') === 'published' ? 'selected' : '' ?>>Published</option></select></label>
-    <section class="editor-workspace" aria-label="Visual exhibit editor">
-      <div class="editor-fields">
-        <label for="body-editor">Exhibit content</label>
-        <div class="format-toolbar" role="toolbar" aria-label="Text formatting">
-          <button type="button" class="toolbar-button" data-format="p">Paragraph</button><button type="button" class="toolbar-button" data-format="h2">Heading</button><button type="button" class="toolbar-button" data-format="h3">Subheading</button><span aria-hidden="true"></span><button type="button" class="toolbar-button" data-format="bold"><strong>B</strong></button><button type="button" class="toolbar-button" data-format="italic"><em>I</em></button><button type="button" class="toolbar-button" data-format="ul">Bulleted list</button><button type="button" class="toolbar-button" data-format="pre">Code block</button><button type="button" class="toolbar-button" data-format="link">Link</button>
-        </div>
-        <div id="body-editor" class="visual-editor prose" contenteditable="true" role="textbox" aria-label="Exhibit content" aria-multiline="true" data-visual-editor><?= render_markdown((string) ($entry['body'] ?? '')) ?></div>
-        <textarea name="body" id="body-markdown" rows="18" hidden><?= form_value($entry, 'body') ?></textarea>
-        <small>Use the toolbar to format text. Changes appear in the page preview as you type.</small>
-      </div>
-      <section class="live-preview" aria-label="Live page preview">
-        <div class="preview-label"><p class="eyebrow">Live page preview</p><span>How this exhibit will look on DNS Museum</span></div>
-        <article class="exhibit preview-exhibit">
-          <a class="back-link" href="#" aria-hidden="true">← Back to collection</a>
-          <header><p class="eyebrow" data-preview-category><?= h((string) ($entry['category'] ?? 'Category')) ?></p><h1 data-preview-title><?= h((string) ($entry['title'] ?? 'New entry')) ?></h1><p class="lede" data-preview-summary><?= h((string) ($entry['summary'] ?? 'Summary will appear here.')) ?></p><p class="tags" data-preview-tags><?php foreach (($entry['tags'] ?? []) as $tag): ?><span><?= h((string) $tag) ?></span><?php endforeach; ?></p></header>
-          <figure data-preview-figure <?= ($entry['image'] ?? '') === '' ? 'hidden' : '' ?>><img data-preview-image<?= ($entry['image'] ?? '') !== '' ? ' src="' . h((string) $entry['image']) . '"' : '' ?> alt="Screenshot used in the talk"><figcaption>Screenshot used in the original talk.</figcaption></figure>
-          <section class="prose" data-preview-body><?= render_markdown((string) ($entry['body'] ?? '')) ?></section>
-          <p class="source-link" data-preview-source <?= ($entry['source'] ?? '') === '' ? 'hidden' : '' ?>>Primary source: <a href="<?= h((string) ($entry['source'] ?? '')) ?>" data-preview-source-link><?= h((string) ($entry['source'] ?? '')) ?></a></p>
-        </article>
-      </section>
-    </section>
-    <div class="editor-actions"><button type="submit">Save entry</button><a class="button secondary-button" href="<?= $isExisting && ($entry['status'] ?? '') === 'published' ? '/exhibits/' . rawurlencode($entry['slug']) : '/admin' ?>">Cancel</a></div></form>
+    <form method="post" action="<?= h($action) ?>" class="editor-form" enctype="multipart/form-data" data-editor-form><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"><textarea name="body" id="body-markdown" hidden><?= form_value($entry, 'body') ?></textarea>
+      <article class="exhibit editor-page">
+        <div class="exhibit-toolbar"><a class="back-link" href="/admin">← Curator desk</a><span class="editor-state"><?= $isExisting ? 'Editing exhibit' : 'New exhibit' ?></span><button type="submit" class="editor-top-save">Save exhibit</button></div>
+        <header>
+          <label class="eyebrow editor-label">Category<input class="page-category" name="category" value="<?= form_value($entry, 'category') ?>" required aria-label="Category"></label>
+          <label class="page-title-label" for="page-title">Title</label><input id="page-title" class="page-title-input" name="title" value="<?= form_value($entry, 'title') ?>" required>
+          <label class="page-summary-label" for="page-summary">Summary</label><textarea id="page-summary" class="page-summary-input" name="summary" rows="2" required><?= form_value($entry, 'summary') ?></textarea>
+          <label class="editor-label tags-editor-label" for="page-tags">Tags <small>comma-separated</small></label><input id="page-tags" class="page-tags-input" name="tags" value="<?= h($tags) ?>">
+        </header>
+        <figure class="editor-image" data-editor-figure <?= ($entry['image'] ?? '') === '' ? 'hidden' : '' ?>><img data-editor-image<?= ($entry['image'] ?? '') !== '' ? ' src="' . h((string) $entry['image']) . '"' : '' ?> alt="Screenshot used in the talk"><figcaption>Screenshot used in the original talk.</figcaption></figure>
+        <section class="prose editor-body">
+          <div class="editor-body-heading"><h2>Exhibit content</h2><small>Format the text as it will appear on the exhibit page.</small></div>
+          <div class="format-toolbar" role="toolbar" aria-label="Text formatting">
+            <button type="button" class="toolbar-button" data-format="p">Paragraph</button><button type="button" class="toolbar-button" data-format="h2">Heading</button><button type="button" class="toolbar-button" data-format="h3">Subheading</button><span aria-hidden="true"></span><button type="button" class="toolbar-button" data-format="bold" aria-label="Bold"><strong>B</strong></button><button type="button" class="toolbar-button" data-format="italic" aria-label="Italic"><em>I</em></button><button type="button" class="toolbar-button" data-format="ul">Bulleted list</button><button type="button" class="toolbar-button" data-format="pre">Code block</button><button type="button" class="toolbar-button" data-format="link">Link</button>
+          </div>
+          <div id="body-editor" class="visual-editor" contenteditable="true" role="textbox" aria-label="Exhibit content" aria-multiline="true" data-visual-editor><?= render_markdown((string) ($entry['body'] ?? '')) ?></div>
+        </section>
+        <p class="source-link editor-source"><label for="page-source">Primary source URL<input id="page-source" name="source" type="url" value="<?= form_value($entry, 'source') ?>"></label></p>
+        <section class="editor-settings" aria-label="Exhibit settings"><h2>Exhibit settings</h2>
+          <div class="field-row"><label>Path<input name="slug" value="<?= form_value($entry, 'slug') ?>" pattern="[a-z0-9]+(-[a-z0-9]+)*" required <?= $isExisting ? 'readonly' : '' ?>><small>lowercase words separated with hyphens</small></label><label>Status<select name="status"><option value="draft" <?= ($entry['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Draft</option><option value="published" <?= ($entry['status'] ?? '') === 'published' ? 'selected' : '' ?>>Published</option></select></label></div>
+          <label>Slide image path<input name="image" value="<?= form_value($entry, 'image') ?>" placeholder="/static/images/talk/slide-7.webp"><small>Optional when you upload an image below.</small></label>
+          <label>Upload slide image<input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG, or WebP up to 2 MB. The server saves the original and creates a 640-pixel WebP card thumbnail.</small></label>
+        </section>
+        <div class="editor-actions"><button type="submit">Save exhibit</button><a class="button secondary-button" href="<?= $isExisting && ($entry['status'] ?? '') === 'published' ? '/exhibits/' . rawurlencode($entry['slug']) : '/admin' ?>">Cancel</a></div>
+      </article>
+    </form>
     <?php if ($isExisting): ?><form method="post" action="<?= h($action) ?>/delete" class="delete-form" data-delete-form><input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"><button class="danger-button" type="submit">Delete entry</button></form><?php endif; ?>
     </section>
     <?php

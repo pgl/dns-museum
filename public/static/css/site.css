@@ -143,34 +143,36 @@ td a:hover { color: var(--accent); }
 td small { display: block; }
 .status { padding: 0.14rem 0.42rem; border: 1px solid var(--line); border-radius: 0.25rem; background: #f0f3f6; color: var(--muted); font-size: 0.74rem; text-transform: capitalize; }
 .status.published { border-color: #a9d9c7; background: #e8f7f1; color: #087052; }
-.edit { max-width: 860px; margin: 0 auto; }
-.edit .back-link { margin-bottom: 1.2rem; }
-.editor-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 1rem; margin-top: 1.5rem; }
-.editor-fields, .live-preview { min-width: 0; padding: 1rem; border: 1px solid var(--line); border-radius: 0.4rem; background: var(--surface); }
-.editor-fields > label { margin-bottom: 0.5rem; }
+.edit { padding: 0; }
+.editor-page .exhibit-toolbar { margin-bottom: 1.2rem; }
+.editor-state { color: var(--quiet); font-size: 0.75rem; }
+.editor-label { width: fit-content; margin: 0 0 0.4rem; }
+.editor-label small { display: inline; font-size: inherit; font-weight: 450; letter-spacing: normal; text-transform: none; }
+.page-category { width: fit-content; min-width: 12rem; margin-top: 0.15rem; padding: 0.1rem 0.15rem; border: 0; border-bottom: 1px dashed var(--line-strong); border-radius: 0; background: transparent; color: var(--accent-dark); font: inherit; letter-spacing: inherit; text-transform: uppercase; }
+.page-category:focus, .page-title-input:focus, .page-summary-input:focus, .page-tags-input:focus { outline: 2px solid rgb(23 105 210 / 16%); }
+.page-title-label, .page-summary-label, .tags-editor-label { margin-top: 0.8rem; color: var(--quiet); font-size: 0.7rem; letter-spacing: 0.045em; text-transform: uppercase; }
+.page-title-input { width: 100%; margin-top: 0.2rem; padding: 0.05rem 0.15rem; border: 0; border-bottom: 1px dashed var(--line-strong); border-radius: 0; background: transparent; color: var(--navy); font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 770; letter-spacing: -0.035em; line-height: 1.16; }
+.page-summary-input { width: 100%; margin-top: 0.2rem; padding: 0.15rem; border: 0; border-bottom: 1px dashed var(--line-strong); border-radius: 0; background: transparent; color: var(--muted); font-size: 1.08rem; line-height: 1.52; }
+.page-tags-input { max-width: 100%; padding: 0.35rem 0.15rem; border: 0; border-bottom: 1px dashed var(--line-strong); border-radius: 0; background: transparent; }
+.editor-page header { padding-bottom: 1.45rem; }
+.editor-image[hidden] { display: none; }
+.editor-body { max-width: 45rem; }
+.editor-body-heading { margin: 1.5rem 0 0.75rem; }
+.editor-body-heading h2 { margin: 0; padding: 0; border: 0; font-size: 1rem; letter-spacing: normal; }
+.editor-body-heading small { display: block; margin-top: 0.2rem; }
 .format-toolbar { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.4rem 0 0; padding: 0.5rem; border: 1px solid var(--line); border-bottom: 0; border-radius: 0.3rem 0.3rem 0 0; background: var(--surface-blue); }
 .format-toolbar span { width: 1px; margin-inline: 0.2rem; background: var(--line-strong); }
 .toolbar-button { padding: 0.32rem 0.5rem; border-color: var(--line); background: #fff; color: var(--navy); font-size: 0.75rem; }
 .toolbar-button:hover { border-color: var(--accent); background: #fff; color: var(--accent-dark); }
-.visual-editor { min-height: 28rem; max-height: 68vh; overflow: auto; padding: 0.85rem; border: 1px solid var(--line-strong); border-radius: 0 0 0.3rem 0.3rem; background: #fff; outline: none; }
+.visual-editor { min-height: 18rem; padding: 0.5rem 0.85rem; border: 1px dashed var(--line-strong); border-radius: 0 0 0.3rem 0.3rem; background: var(--surface); outline: none; }
 .visual-editor:focus { outline: 3px solid rgb(23 105 210 / 16%); border-color: var(--accent); }
 .visual-editor:empty::before { color: var(--quiet); content: "Write your exhibit here…"; }
-.editor-fields > small { display: block; margin-top: 0.45rem; }
-.live-preview { position: sticky; top: 5rem; max-height: calc(100vh - 6rem); overflow: auto; padding: 0.75rem; }
-.preview-label { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; padding: 0.2rem 0.35rem 0.65rem; border-bottom: 1px solid var(--line); }
-.preview-label .eyebrow { margin: 0; }
-.preview-label > span { color: var(--quiet); font-size: 0.68rem; text-align: right; }
-.preview-exhibit { width: 100%; padding: 1.25rem 0.5rem 1rem; }
-.preview-exhibit .exhibit-toolbar { display: block; }
-.preview-exhibit .back-link { visibility: hidden; }
-.preview-exhibit header h1 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
-.preview-exhibit .lede { font-size: 0.95rem; }
-.preview-exhibit figure[hidden], .preview-exhibit .source-link[hidden] { display: none; }
-.preview-exhibit .prose { font-size: 0.88rem; }
-.preview-exhibit .prose h2 { font-size: 1.15rem; }
-.preview-exhibit .prose h3 { font-size: 1rem; }
-.preview-exhibit .prose pre { white-space: pre-wrap; overflow-wrap: anywhere; }
-.edit .editor-actions { margin-top: 1.25rem; }
+.editor-source { max-width: 45rem; }
+.editor-source label { color: var(--muted); font-size: inherit; font-weight: inherit; }
+.editor-source input { margin-top: 0.35rem; }
+.editor-settings { margin-top: 3rem; padding: 1.25rem; border: 1px solid var(--line); border-radius: 0.4rem; background: var(--surface); }
+.editor-settings h2 { margin-bottom: 1rem; font-size: 1.2rem; }
+.editor-actions { margin-top: 1.25rem; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .editor-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
 .secondary-button { border-color: var(--line-strong); background: var(--surface); color: var(--navy); }
