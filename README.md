@@ -2,7 +2,7 @@
 
 This repository is the source for [dns.museum](https://dns.museum), a field guide to unusual uses of the Domain Name System.
 
-At the start of a talk, Peter Lowe jokes that many of the things he describes are no longer online. This collection keeps those stories and ideas in one place. Each exhibit explains how DNS fits into the idea and points to an original source when one is available. Some exhibits describe historical services that may have changed or disappeared.
+At the start of a talk called "Bizarre and Unusual Uses of DNS", Peter Lowe jokes that many of the things he describes are no longer online. This collection keeps those stories and ideas in one place. Each exhibit explains how DNS fits into the idea and points to an original source when one is available. Some exhibits describe historical services that may have changed or disappeared.
 
 For questions about the DNS Museum, email [pgl@yoyo.org](mailto:pgl@yoyo.org).
 
