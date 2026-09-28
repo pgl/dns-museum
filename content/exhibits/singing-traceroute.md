@@ -1,6 +1,6 @@
 ---
 title: Singing traceroute
-summary: A traceroute to bad.horse uses reverse-DNS names to sing lyrics from Dr Horrible’s Sing-Along Blog along the route.
+summary: A traceroute spells out lyrics from “Let It Snow” in the reverse-DNS names returned for each hop.
 category: Traceroutes
 tags: traceroute, music, art
 image: /static/images/talk/slide-13.webp
