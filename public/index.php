@@ -76,10 +76,10 @@ function store_uploaded_image(string $slug): string {
     $convert = config_value('MUSEUM_IMAGE_MAGICK', '/usr/bin/convert');
     $temporaryThumbnail = $thumbDirectory . '/.' . $slug . '-' . bin2hex(random_bytes(6)) . '.webp';
     if (!is_executable($convert) || !function_exists('proc_open')) { @unlink($original); throw new RuntimeException('ImageMagick is not available to create the thumbnail.'); }
-    $process = proc_open([$convert, $original, '-auto-orient', '-thumbnail', '640x640>', '-strip', '-quality', '82', '-define', 'webp:method=6', 'webp:' . $temporaryThumbnail], [0 => ['file', '/dev/null', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']], $pipes);
+    $process = proc_open([$convert, $original, '-auto-orient', '-thumbnail', '480x480>', '-strip', '-quality', '72', '-define', 'webp:method=6', 'webp:' . $temporaryThumbnail], [0 => ['file', '/dev/null', 'r'], 1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']], $pipes);
     $status = is_resource($process) ? proc_close($process) : -1;
     $thumbnailInfo = $status === 0 ? @getimagesize($temporaryThumbnail) : false;
-    if ($thumbnailInfo === false || $thumbnailInfo[2] !== IMAGETYPE_WEBP || max($thumbnailInfo[0], $thumbnailInfo[1]) > 640 || !rename($temporaryThumbnail, $thumbnail)) {
+    if ($thumbnailInfo === false || $thumbnailInfo[2] !== IMAGETYPE_WEBP || max($thumbnailInfo[0], $thumbnailInfo[1]) > 480 || !rename($temporaryThumbnail, $thumbnail)) {
         @unlink($temporaryThumbnail);
         @unlink($original);
         throw new RuntimeException('The thumbnail could not be created. Check that ImageMagick supports WebP.');
@@ -116,7 +116,7 @@ function editor(array $entry, string $error = '', string $preview = ''): void {
         <section class="editor-settings" aria-label="Exhibit settings"><h2>Exhibit settings</h2>
           <div class="field-row"><label>Path<input name="slug" value="<?= form_value($entry, 'slug') ?>" pattern="[a-z0-9]+(-[a-z0-9]+)*" required <?= $isExisting ? 'readonly' : '' ?>><small>lowercase words separated with hyphens</small></label><label>Status<select name="status"><option value="draft" <?= ($entry['status'] ?? '') === 'draft' ? 'selected' : '' ?>>Draft</option><option value="published" <?= ($entry['status'] ?? '') === 'published' ? 'selected' : '' ?>>Published</option></select></label></div>
           <label>Slide image path<input name="image" value="<?= form_value($entry, 'image') ?>" placeholder="/static/images/talk/slide-7.webp"><small>Optional when you upload an image below.</small></label>
-          <label>Upload slide image<input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG, or WebP up to 2 MB. The server saves the original and creates a 640-pixel WebP card thumbnail.</small></label>
+          <label>Upload slide image<input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG, or WebP up to 2 MB. The server saves the original and creates a 480-pixel WebP card thumbnail.</small></label>
         </section>
         <div class="editor-actions"><button type="submit">Save exhibit</button><a class="button secondary-button" href="<?= $isExisting && ($entry['status'] ?? '') === 'published' ? '/exhibits/' . rawurlencode($entry['slug']) : '/admin' ?>">Cancel</a></div>
       </article>

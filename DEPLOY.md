@@ -32,7 +32,7 @@ updated: 2026-08-20T00:00:00Z
 Markdown body here.
 ```
 
-Use `status: draft` to keep an exhibit in the curator desk until it is ready. The admin editor writes these Markdown files and provides a live page preview. It can publish or delete an exhibit. It accepts JPEG, PNG, and WebP slide images up to 2 MB and saves a 640-pixel WebP card thumbnail under `public/static/images/uploads`.
+Use `status: draft` to keep an exhibit in the curator desk until it is ready. The admin editor writes these Markdown files and provides a live page preview. It can publish or delete an exhibit. It accepts JPEG, PNG, and WebP slide images up to 2 MB and saves a 480-pixel WebP card thumbnail under `public/static/images/uploads`.
 
 Slide images in `public/static/images/talk` are optimised WebP copies of selected source slides. Their card thumbnails are in `public/static/images/talk/thumbnails`. Record the original source in the exhibit; do not add third-party assets without recording their source.
 
