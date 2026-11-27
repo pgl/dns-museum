@@ -32,6 +32,18 @@ if (quickSearch) {
   quickSearch.querySelector("[data-search-close]").addEventListener("click", () => quickSearch.close());
   quickSearch.addEventListener("click", (event) => { if (event.target === quickSearch) quickSearch.close(); });
   input.addEventListener("input", update);
+  input.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab" || event.shiftKey || event.ctrlKey || event.metaKey || event.altKey) return;
+    const query = normalize(input.value.trim());
+    if (!query) return;
+    const match = results.find((result) => !result.hidden && normalize(result.querySelector("strong").textContent).startsWith(query));
+    const title = match?.querySelector("strong").textContent;
+    if (title && normalize(title) !== query) {
+      event.preventDefault();
+      input.value = title;
+      update();
+    }
+  });
   update();
 }
 
