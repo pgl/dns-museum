@@ -32,11 +32,16 @@ main, footer { width: min(1180px, calc(100% - 2.5rem)); margin-inline: auto; }
 .wordmark span:first-child, .wordmark i { color: var(--quiet); font-size: 0.78em; font-style: normal; font-weight: 550; }
 .wordmark strong { color: var(--accent); font-weight: 760; letter-spacing: 0.02em; }
 .site-nav { display: flex; align-items: center; gap: 0.25rem; }
-.site-nav a { padding: 0.42rem 0.65rem; border-radius: 0.3rem; color: var(--muted); font-size: 0.875rem; font-weight: 600; text-decoration: none; }
-.site-nav a:hover { background: var(--surface-blue); color: var(--navy); }
-.site-nav .quick-search-trigger { padding: 0.42rem 0.65rem; border: 0; border-radius: 0.3rem; background: transparent; color: var(--muted); font-size: 0.875rem; font-weight: 600; }
-.site-nav .quick-search-trigger:hover { background: var(--surface-blue); color: var(--navy); }
-.quick-search-trigger kbd { margin-left: 0.2rem; color: var(--quiet); font: inherit; font-size: 0.75rem; }
+.site-nav a, .site-nav .quick-search-trigger { display: inline-flex; min-height: 2.6rem; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.55rem 0.8rem; border: 1px solid transparent; border-radius: 0.45rem; background: transparent; color: var(--muted); font-size: 0.875rem; font-weight: 650; line-height: 1.2; text-decoration: none; cursor: pointer; }
+.site-nav a:hover, .site-nav .quick-search-trigger:hover { background: var(--surface-blue); color: var(--navy); }
+.site-nav a[aria-current="page"] { background: #eaf2fc; color: var(--accent-dark); }
+.site-nav a:focus-visible, .site-nav .quick-search-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.site-nav .quick-search-trigger { margin-left: 0.4rem; border-color: var(--line); background: var(--surface); color: var(--navy); }
+.site-nav .quick-search-trigger:hover { border-color: var(--line-strong); }
+.search-icon { position: relative; width: 1rem; height: 1rem; flex: none; }
+.search-icon::before { position: absolute; top: 0.1rem; left: 0.1rem; width: 0.55rem; height: 0.55rem; border: 1.5px solid currentColor; border-radius: 50%; content: ""; }
+.search-icon::after { position: absolute; top: 0.66rem; left: 0.65rem; width: 0.35rem; height: 1.5px; border-radius: 1px; background: currentColor; content: ""; transform: rotate(45deg); transform-origin: left center; }
+.quick-search-trigger kbd { padding: 0.12rem 0.3rem; border: 1px solid var(--line); border-radius: 0.25rem; color: var(--muted); font: inherit; font-size: 0.7rem; white-space: nowrap; }
 
 h1, h2, h3 { margin: 0; color: var(--navy); font-family: var(--font); letter-spacing: -0.035em; line-height: 1.16; }
 .eyebrow { margin: 0 0 0.42rem; color: var(--accent-dark); font-size: 0.76rem; font-weight: 720; letter-spacing: 0.075em; text-transform: uppercase; }
@@ -239,11 +244,11 @@ td small { display: block; }
 
 @media (max-width: 620px) {
   .quick-search-trigger kbd { display: none; }
-  .site-nav .quick-search-trigger { padding-inline: 0.45rem; font-size: 0.8rem; }
-  .site-header { min-height: 3.8rem; padding-inline: 1rem; }
+  .site-header { min-height: 3.8rem; gap: 0.5rem; padding-inline: 1rem; }
   main, footer { width: min(100% - 2rem, 1180px); }
   .site-nav { gap: 0; }
-  .site-nav a { padding-inline: 0.45rem; font-size: 0.8rem; }
+  .site-nav a, .site-nav .quick-search-trigger { min-height: 2.75rem; padding-inline: 0.45rem; font-size: 0.8rem; }
+  .site-nav .quick-search-trigger { margin-left: 0.15rem; }
   .wordmark span:first-child, .wordmark i { display: none; }
   .collection, .categories-page, .exhibit, .admin { padding-top: 2rem; }
   .category-index { grid-template-columns: 1fr 1fr; }
@@ -263,8 +268,12 @@ td small { display: block; }
 }
 
 @media (max-width: 430px) {
-  .wordmark span { display: none; }
-  .site-nav a { padding-inline: 0.38rem; }
+  html { scroll-padding-top: 7rem; }
+  .wordmark span:first-child { display: inline; }
+  .site-header { flex-wrap: wrap; gap: 0; padding-block: 0.45rem; }
+  .site-nav { width: 100%; flex-wrap: wrap; }
+  .site-nav a, .site-nav .quick-search-trigger { padding-inline: 0.25rem; font-size: 0.75rem; }
+  .site-nav .quick-search-trigger { gap: 0.2rem; margin-left: 0; }
   .category-index { grid-template-columns: 1fr; }
   .category-index a, .category-index a:nth-child(n) { border-top: 1px solid var(--line); border-left: 0; }
   .category-index a:first-child { border-top: 0; }
