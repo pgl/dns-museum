@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+final class ExhibitNotFound extends RuntimeException {}
+
 final class ExhibitStore
 {
     public function __construct(private readonly string $directory)
@@ -28,7 +30,9 @@ final class ExhibitStore
     public function get(string $slug): array
     {
         $this->assertSlug($slug);
-        return $this->readFile($this->directory . '/' . $slug . '.md');
+        $path = $this->directory . '/' . $slug . '.md';
+        if (!is_file($path)) { throw new ExhibitNotFound('Exhibit not found.'); }
+        return $this->readFile($path);
     }
 
     /** @param array<string, mixed> $entry */
@@ -51,7 +55,12 @@ final class ExhibitStore
         $markdown .= 'status: ' . $status . "\n";
         $markdown .= 'updated: ' . gmdate(DATE_RFC3339) . "\n---\n\n";
         $markdown .= trim((string) $entry['body']) . "\n";
-        if (file_put_contents($this->directory . '/' . $entry['slug'] . '.md', $markdown, LOCK_EX) === false) {
+        $destination = $this->directory . '/' . $entry['slug'] . '.md';
+        $mode = is_file($destination) ? (fileperms($destination) & 0777) : (0666 & ~umask());
+        $temporary = tempnam($this->directory, '.exhibit-');
+        if ($temporary === false) { throw new RuntimeException('Could not create a temporary exhibit file.'); }
+        if (file_put_contents($temporary, $markdown, LOCK_EX) === false || !chmod($temporary, $mode) || !rename($temporary, $destination)) {
+            @unlink($temporary);
             throw new RuntimeException('Could not write the exhibit file.');
         }
     }
