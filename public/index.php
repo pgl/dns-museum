@@ -30,10 +30,18 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' https: blob:
 
 function layout(string $title, string $content): void {
     global $store;
+    $searchAvailable = true;
+    try {
+        $searchEntries = $store->all();
+    } catch (Throwable $error) {
+        error_log('Quick search unavailable: ' . $error->getMessage());
+        $searchAvailable = false;
+        $searchEntries = [];
+    }
     echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="DNS Museum: a field guide to unusual uses of the Domain Name System."><title>' . h($title) . '</title><link rel="stylesheet" href="/static/css/site.css?v=' . (string) filemtime(__DIR__ . '/static/css/site.css') . '"></head><body>';
     echo '<a class="skip-link" href="#content">Skip to content</a><header class="site-header"><a class="wordmark" href="/"><span>The</span><strong>DNS</strong><span>Museum</span></a><nav class="site-nav" aria-label="Main navigation"><a href="/#collection">Collection</a><a href="/categories/">Categories</a><a href="/about/">About</a><button type="button" class="quick-search-trigger" data-search-open aria-keyshortcuts="Meta+K Control+K">Search <kbd>⌘ K</kbd></button></nav></header><main id="content">' . $content . '</main>';
-    echo '<dialog class="quick-search" data-quick-search aria-labelledby="quick-search-title"><div class="quick-search-heading"><h2 id="quick-search-title">Search exhibits</h2><button type="button" data-search-close aria-label="Close search">×</button></div><label for="quick-search-input">Search all exhibits</label><input id="quick-search-input" type="search" placeholder="Search titles, topics, and text" autocomplete="off"><p class="quick-search-status" role="status" aria-live="polite"></p><ul class="quick-search-results">';
-    foreach ($store->all() as $entry) {
+    echo '<dialog class="quick-search" data-quick-search data-available="' . ($searchAvailable ? 'true' : 'false') . '" aria-labelledby="quick-search-title"><div class="quick-search-heading"><h2 id="quick-search-title">Search exhibits</h2><button type="button" data-search-close aria-label="Close search">×</button></div><label for="quick-search-input">Search all exhibits</label><input id="quick-search-input" type="search" placeholder="Search titles, topics, and text" autocomplete="off"><p class="quick-search-status" role="status" aria-live="polite"></p><ul class="quick-search-results">';
+    foreach ($searchEntries as $entry) {
         $searchText = implode(' ', [$entry['title'], $entry['summary'], $entry['category'], implode(' ', $entry['tags']), $entry['body']]);
         echo '<li data-quick-result data-search-text="' . h($searchText) . '"><a href="/exhibits/' . rawurlencode($entry['slug']) . '"><strong>' . h($entry['title']) . '</strong><span>' . h($entry['summary']) . '</span></a></li>';
     }
@@ -190,11 +198,25 @@ function editor(array $entry, string $error = '', string $preview = ''): void {
 }
 
 try {
+    if ($path === '/sitemap.xml' && ($method === 'GET' || $method === 'HEAD')) {
+        header('Content-Type: application/xml; charset=utf-8');
+        if ($method === 'HEAD') { exit; }
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        foreach (['/', '/categories/', '/about/'] as $page) {
+            echo '<url><loc>https://dns.museum' . h($page) . '</loc></url>';
+        }
+        foreach ($store->all() as $entry) {
+            echo '<url><loc>https://dns.museum/exhibits/' . rawurlencode($entry['slug']) . '</loc></url>';
+        }
+        echo '</urlset>';
+        exit;
+    }
     if ($path === '/' && $method === 'GET') {
         $entries = $store->all();
         [$sectionLabels, $sections] = collection_sections($entries);
         ob_start(); ?>
-        <section class="collection" id="collection"><div class="section-heading"><p class="eyebrow">DNS Museum · <?= count($entries) ?> entries</p><h1>The DNS Museum</h1><p>A reference for the odd, inventive, and always impractical things people have done with DNS.</p><div class="collection-search"><label for="collection-search">Search the collection</label><input id="collection-search" type="search" placeholder="Try a title, topic, or category" autocomplete="off" aria-describedby="search-status" data-collection-search><p id="search-status" class="search-status" role="status" aria-live="polite"><?= count($entries) ?> exhibits</p></div></div><nav class="category-index" aria-label="Collection sections"><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><a href="#<?= h(section_anchor($category)) ?>"><span><?= h($sectionLabels[$category]) ?></span><small><?= count($sectionEntries) ?></small></a><?php endforeach; ?></nav><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><section class="collection-section" id="<?= h(section_anchor($category)) ?>"><div class="collection-section-heading"><h2><a class="category-heading-link" href="/categories/#<?= rawurlencode(section_anchor($category)) ?>"><?= h($sectionLabels[$category]) ?></a></h2><span><?= count($sectionEntries) ?> entries</span></div><div class="exhibit-grid"><?php foreach ($sectionEntries as $entry): ?><article class="exhibit-card" data-exhibit-card data-search-text="<?= h(implode(' ', [$entry['title'], $entry['summary'], $entry['category'], implode(' ', $entry['tags'])])) ?>"><div class="card-heading"><div class="card-title-line"><h3><a href="/exhibits/<?= rawurlencode($entry['slug']) ?>"><?= h($entry['title']) ?></a></h3><?= exhibit_edit_link($entry) ?></div><p class="eyebrow"><?= h($sectionLabels[$entry['category']] ?? $entry['category']) ?> · <?= h(implode(' · ', $entry['tags'])) ?></p></div><?php if ($entry['image'] !== ''): ?><div class="screenshot-frame"><img src="<?= h(thumbnail_image($entry['image'])) ?>" alt="Screenshot used in the talk for <?= h($entry['title']) ?>" loading="lazy"></div><?php endif; ?><div class="card-body"><p><?= h($entry['summary']) ?></p><a class="card-link" href="/exhibits/<?= rawurlencode($entry['slug']) ?>">Read more <span aria-hidden="true">→</span></a></div></article><?php endforeach; ?></div></section><?php endforeach; ?><p class="no-search-results" data-no-search-results hidden>No exhibits match your search.</p></section>
+        <section class="collection" id="collection"><div class="section-heading"><p class="eyebrow">DNS Museum · <?= count($entries) ?> entries</p><h1>The DNS Museum</h1><p>A reference for the odd, inventive, and always impractical things people have done with DNS.</p><div class="collection-search"><label for="collection-search">Search the collection</label><input id="collection-search" type="search" placeholder="Try a title, topic, or category" autocomplete="off" aria-describedby="search-status" data-collection-search><kbd class="collection-search-hint" aria-label="Press Command K or Control K to search all exhibits">⌘ K</kbd><p id="search-status" class="search-status" role="status" aria-live="polite"><?= count($entries) ?> exhibits</p></div></div><nav class="category-index" aria-label="Collection sections"><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><a href="#<?= h(section_anchor($category)) ?>"><span><?= h($sectionLabels[$category]) ?></span><small><?= count($sectionEntries) ?></small></a><?php endforeach; ?></nav><?php foreach ($sections as $category => $sectionEntries): if ($sectionEntries === []) { continue; } ?><section class="collection-section" id="<?= h(section_anchor($category)) ?>"><div class="collection-section-heading"><h2><a class="category-heading-link" href="/categories/#<?= rawurlencode(section_anchor($category)) ?>"><?= h($sectionLabels[$category]) ?></a></h2><span><?= count($sectionEntries) ?> entries</span></div><div class="exhibit-grid"><?php foreach ($sectionEntries as $entry): ?><article class="exhibit-card" data-exhibit-card data-search-text="<?= h(implode(' ', [$entry['title'], $entry['summary'], $entry['category'], implode(' ', $entry['tags'])])) ?>"><div class="card-heading"><div class="card-title-line"><h3><a href="/exhibits/<?= rawurlencode($entry['slug']) ?>"><?= h($entry['title']) ?></a></h3><?= exhibit_edit_link($entry) ?></div><p class="eyebrow"><?= h($sectionLabels[$entry['category']] ?? $entry['category']) ?> · <?= h(implode(' · ', $entry['tags'])) ?></p></div><?php if ($entry['image'] !== ''): ?><div class="screenshot-frame"><img src="<?= h(thumbnail_image($entry['image'])) ?>" alt="Screenshot used in the talk for <?= h($entry['title']) ?>" loading="lazy"></div><?php endif; ?><div class="card-body"><p><?= h($entry['summary']) ?></p><a class="card-link" href="/exhibits/<?= rawurlencode($entry['slug']) ?>">Read more <span aria-hidden="true">→</span></a></div></article><?php endforeach; ?></div></section><?php endforeach; ?><p class="no-search-results" data-no-search-results hidden>No exhibits match your search.</p></section>
         <?php layout('The DNS Museum', (string) ob_get_clean()); exit;
     }
     if (($path === '/categories' || $path === '/categories/') && $method === 'GET') {

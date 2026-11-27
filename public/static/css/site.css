@@ -52,6 +52,7 @@ h1, h2, h3 { margin: 0; color: var(--navy); font-family: var(--font); letter-spa
 .collection-search input::placeholder { color: #8190a3; }
 .collection-search input:hover { border-color: #bccbdc; background-color: #f4f8fc; }
 .collection-search input:focus { border-color: #92afd1; outline: none; background-color: #fff; box-shadow: 0 0 0 3px rgb(55 112 176 / 12%); }
+.collection-search-hint { flex: 0 0 auto; padding: 0.12rem 0.35rem; border: 1px solid var(--line); border-radius: 0.25rem; color: var(--muted); font: inherit; font-size: 0.72rem; }
 .search-status { min-height: 1.2rem; margin: 0; color: var(--quiet); font-size: 0.76rem; }
 .quick-search { width: min(38rem, calc(100% - 2rem)); max-height: min(42rem, 85vh); padding: 1.2rem; border: 1px solid var(--line-strong); border-radius: 0.6rem; background: var(--surface); color: var(--ink); box-shadow: 0 1rem 3rem rgb(13 45 80 / 22%); }
 .quick-search::backdrop { background: rgb(13 29 48 / 48%); }

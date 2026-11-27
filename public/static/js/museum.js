@@ -14,7 +14,7 @@ if (quickSearch) {
       result.hidden = !terms.every((term) => text.includes(term));
       if (!result.hidden) count += 1;
     });
-    status.textContent = `${count} ${count === 1 ? "exhibit" : "exhibits"}`;
+    status.textContent = quickSearch.dataset.available === "true" ? `${count} ${count === 1 ? "exhibit" : "exhibits"}` : "Search is temporarily unavailable.";
   };
   document.addEventListener("keydown", (event) => {
     if ((event.metaKey || event.ctrlKey) && !event.altKey && event.key.toLowerCase() === "k") {
