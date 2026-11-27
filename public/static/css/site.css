@@ -33,8 +33,9 @@ main, footer { width: min(1180px, calc(100% - 2.5rem)); margin-inline: auto; }
 .wordmark strong { color: var(--accent); font-weight: 760; letter-spacing: 0.02em; }
 .site-nav { display: flex; align-items: center; gap: 0.25rem; }
 .site-nav a, .site-nav .quick-search-trigger { display: inline-flex; min-height: 2.6rem; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.55rem 0.8rem; border: 1px solid transparent; border-radius: 0.45rem; background: transparent; color: var(--muted); font-size: 0.875rem; font-weight: 650; line-height: 1.2; text-decoration: none; cursor: pointer; }
-.site-nav a:hover, .site-nav .quick-search-trigger:hover { background: var(--surface-blue); color: var(--navy); }
-.site-nav a[aria-current="page"] { background: #eaf2fc; color: var(--accent-dark); }
+.site-nav a { border-color: var(--line); background: var(--surface-blue); color: var(--navy); }
+.site-nav a:hover, .site-nav .quick-search-trigger:hover { border-color: #9bb9d9; background: #e8f1fc; color: var(--accent-dark); }
+.site-nav a[aria-current="page"] { border-color: var(--navy); background: var(--navy); color: #fff; }
 .site-nav a:focus-visible, .site-nav .quick-search-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .site-nav .quick-search-trigger { margin-left: 0.4rem; border-color: var(--line); background: var(--surface); color: var(--navy); }
 .site-nav .quick-search-trigger:hover { border-color: var(--line-strong); }
