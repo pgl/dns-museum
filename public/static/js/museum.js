@@ -1,5 +1,40 @@
 const searchInput = document.querySelector("[data-collection-search]");
 
+const quickSearch = document.querySelector("[data-quick-search]");
+if (quickSearch) {
+  const input = quickSearch.querySelector("input");
+  const results = Array.from(quickSearch.querySelectorAll("[data-quick-result]"));
+  const status = quickSearch.querySelector("[role=status]");
+  const normalize = (value) => value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase();
+  const update = () => {
+    const terms = normalize(input.value.trim()).split(/\s+/).filter(Boolean);
+    let count = 0;
+    results.forEach((result) => {
+      const text = normalize(result.dataset.searchText);
+      result.hidden = !terms.every((term) => text.includes(term));
+      if (!result.hidden) count += 1;
+    });
+    status.textContent = `${count} ${count === 1 ? "exhibit" : "exhibits"}`;
+  };
+  document.addEventListener("keydown", (event) => {
+    if ((event.metaKey || event.ctrlKey) && !event.altKey && event.key.toLowerCase() === "k") {
+      if (event.target.closest("[contenteditable=true]")) return;
+      event.preventDefault();
+      if (!quickSearch.open) quickSearch.showModal();
+      input.focus();
+      input.select();
+    }
+  });
+  document.querySelector("[data-search-open]").addEventListener("click", () => {
+    quickSearch.showModal();
+    input.focus();
+  });
+  quickSearch.querySelector("[data-search-close]").addEventListener("click", () => quickSearch.close());
+  quickSearch.addEventListener("click", (event) => { if (event.target === quickSearch) quickSearch.close(); });
+  input.addEventListener("input", update);
+  update();
+}
+
 if (searchInput) {
   const cards = Array.from(document.querySelectorAll("[data-exhibit-card]"));
   const status = document.querySelector("#search-status");
